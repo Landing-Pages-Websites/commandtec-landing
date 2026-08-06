@@ -6,85 +6,85 @@ import type { JSX, SVGProps } from "react";
 type IconPaths = JSX.Element;
 
 const PATHS: Record<string, IconPaths> = {
-  clipboard: (
+  clock: (
     <>
-      <rect x="8" y="3" width="8" height="4" rx="1" />
-      <path d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
-      <path d="M9 12h6M9 16h4" />
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3.5 2" />
     </>
   ),
-  boxes: (
+  alert: (
     <>
-      <path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z" />
-      <path d="m3 7 9 5 9-5M12 12v10" />
+      <path d="M10.3 3.6 2.5 17a1.9 1.9 0 0 0 1.7 2.9h15.6a1.9 1.9 0 0 0 1.7-2.9L13.7 3.6a1.9 1.9 0 0 0-3.4 0Z" />
+      <path d="M12 9v4M12 17h.01" />
     </>
   ),
-  trending: (
+  target: (
     <>
-      <path d="M3 17 9 11l4 4 8-8" />
-      <path d="M15 7h6v6" />
+      <circle cx="12" cy="12" r="8" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="12" cy="12" r="0.6" fill="currentColor" stroke="none" />
     </>
   ),
-  cart: (
-    <>
-      <circle cx="9" cy="20" r="1.4" />
-      <circle cx="18" cy="20" r="1.4" />
-      <path d="M2 3h2.2l2.3 12.4a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21 7H6" />
-    </>
-  ),
-  truck: (
-    <>
-      <path d="M2 6a1 1 0 0 1 1-1h11v11H2Z" />
-      <path d="M14 8h4l3 3v4h-7Z" />
-      <circle cx="7" cy="18" r="1.6" />
-      <circle cx="17" cy="18" r="1.6" />
-    </>
-  ),
-  receipt: (
-    <>
-      <path d="M5 3v18l2-1.4L9 21l2-1.4L13 21l2-1.4L17 21l2-1.4V3l-2 1.4L15 3l-2 1.4L11 3 9 4.4 7 3Z" />
-      <path d="M9 8h6M9 12h6" />
-    </>
-  ),
-  wallet: (
-    <>
-      <path d="M3 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
-      <path d="M3 9h15a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1 0-4h2" />
-    </>
-  ),
-  ledger: (
-    <>
-      <path d="M4 4a2 2 0 0 1 2-2h11a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2Z" />
-      <path d="M4 18h14M8 7h6M8 11h6" />
-    </>
-  ),
-  chart: (
-    <>
-      <path d="M3 3v16a2 2 0 0 0 2 2h16" />
-      <path d="M8 15v-3M13 15V8M18 15v-5" />
-    </>
-  ),
-  sync: (
+  refresh: (
     <>
       <path d="M21 8a8 8 0 0 0-14.9-2M3 5v4h4" />
       <path d="M3 16a8 8 0 0 0 14.9 2M21 19v-4h-4" />
     </>
   ),
-  mobile: (
+  chat: (
     <>
-      <rect x="6" y="2" width="12" height="20" rx="2.5" />
-      <path d="M11 18h2" />
+      <path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4 4V5Z" />
+      <path d="M8 8h8M8 11.5h5" />
     </>
   ),
-  send: (
+  search: (
     <>
-      <path d="M22 3 2 11l7 2.5L12 21l3-6 7-12Z" />
-      <path d="m9 13.5 6-6.5" />
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m20 20-3.8-3.8" />
     </>
   ),
-  cloud: (
+  file: (
     <>
-      <path d="M7 18a4 4 0 0 1-.6-7.95 5 5 0 0 1 9.7-1.3A4 4 0 0 1 17 18Z" />
+      <path d="M6 3h7l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
+      <path d="M13 3v5h5M8 13h8M8 17h6" />
+    </>
+  ),
+  users: (
+    <>
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3 20a6 6 0 0 1 12 0" />
+      <path d="M16 5.2a3.2 3.2 0 0 1 0 6.1M17 20a6 6 0 0 0-3-5.2" />
+    </>
+  ),
+  clipboardCheck: (
+    <>
+      <rect x="8" y="3" width="8" height="4" rx="1" />
+      <path d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
+      <path d="m9 14 2 2 4-4" />
+    </>
+  ),
+  award: (
+    <>
+      <circle cx="12" cy="9" r="5.2" />
+      <path d="m8.4 13.4-1.6 7.1L12 18l5.2 2.5-1.6-7.1" />
+    </>
+  ),
+  shield: (
+    <>
+      <path d="M12 3 5 6v5.5c0 4.3 2.9 7.5 7 9 4.1-1.5 7-4.7 7-9V6Z" />
+      <path d="m9 12 2 2 4-4" />
+    </>
+  ),
+  badge: (
+    <>
+      <path d="M12 2.5 14.4 5l3.4-.4.5 3.4 2.7 2.1-1.6 3 1.6 3-2.7 2.1-.5 3.4-3.4-.4L12 21.5 9.6 19l-3.4.4-.5-3.4L3 13.9l1.6-3L3 7.9l2.7-2.1.5-3.4L9.6 5Z" />
+      <path d="m9.5 12 1.8 1.8L15 10" />
+    </>
+  ),
+  scale: (
+    <>
+      <path d="M12 3v18M7 21h10" />
+      <path d="M6 6h12M6 6 3 12a3 3 0 0 0 6 0ZM18 6l-3 6a3 3 0 0 0 6 0Z" />
     </>
   ),
   phone: (
@@ -100,19 +100,28 @@ interface IconProps extends SVGProps<SVGSVGElement> {
   name: keyof typeof PATHS | string;
 }
 
-export function Icon({ name, className, ...rest }: IconProps): JSX.Element | null {
+// Default size class so a caller that omits one can't blow the icon up to the
+// SVG's intrinsic size.
+const HAS_SIZE = /(?:^|\s)(?:w-|h-|size-)/;
+
+export function Icon({
+  name,
+  className,
+  ...rest
+}: IconProps): JSX.Element | null {
   const path = PATHS[name];
   if (!path) return null;
+  const sizeCls = className && HAS_SIZE.test(className) ? "" : "w-6 h-6";
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.8}
+      strokeWidth={1.75}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={className}
+      className={`${sizeCls} ${className ?? ""}`.trim()}
       {...rest}
     >
       {path}

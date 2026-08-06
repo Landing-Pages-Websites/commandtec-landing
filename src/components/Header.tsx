@@ -6,11 +6,19 @@ import { useEffect, useState } from "react";
 import { CTA, PHONE, PHONE_HREF } from "@/lib/content";
 import { Icon } from "@/components/icons";
 
-export function Header() {
+const NAV = [
+  { label: "ISO", href: "#iso-certification" },
+  { label: "CMMI", href: "#cmmi-certification" },
+  { label: "Process", href: "#how-it-works" },
+  { label: "Why us", href: "#why-commandtec" },
+  { label: "FAQ", href: "#faq" },
+];
+
+export function Header(): React.ReactElement {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = (): void => setScrolled(window.scrollY > 120);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -18,43 +26,65 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-40 border-b bg-[var(--color-surface)]/95 backdrop-blur-md transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-[var(--color-border)] shadow-[0_1px_12px_-6px_rgba(10,22,40,0.25)]"
-          : "bg-white/80 backdrop-blur-sm border-b border-transparent"
+          ? "border-[var(--color-border)] shadow-[0_1px_14px_-8px_rgba(11,15,13,0.4)]"
+          : "border-[var(--color-border)]/60"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-5 md:px-8 flex items-center justify-between py-2.5 md:py-3">
+      <div
+        className={`mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-300 md:px-8 ${
+          scrolled ? "py-[9px]" : "py-3.5"
+        }`}
+      >
         <Link
-          href={CTA.demoAnchor}
+          href="#hero"
           className="flex items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
-          aria-label="QBC Systems — TireServ home"
+          aria-label="CommandTec — home"
         >
           <Image
             src="/logo.png"
-            alt="QBC Systems"
-            width={249}
-            height={120}
+            alt="CommandTec"
+            width={1000}
+            height={265}
             priority
-            className="h-12 md:h-14 w-auto object-contain"
+            className={`w-auto object-contain transition-all duration-300 ${
+              scrolled ? "h-8" : "h-9 md:h-10"
+            }`}
           />
         </Link>
+
+        <nav
+          aria-label="Section navigation"
+          className="hidden items-center gap-7 lg:flex"
+        >
+          {NAV.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm font-medium text-[var(--color-muted)] transition-colors hover:text-[var(--color-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded-sm"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
 
         <div className="flex items-center gap-2 md:gap-3">
           <a
             href={PHONE_HREF}
-            className="hidden sm:inline-flex items-center gap-2 border-[1.5px] border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-surface)] transition-colors rounded-lg px-4 py-2 md:py-2.5 font-semibold text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
-            aria-label={`Call QBC Systems at ${PHONE}`}
+            className="inline-flex min-h-[40px] items-center gap-2 rounded-md border-[1.5px] border-[var(--color-primary)] px-3.5 py-2 text-sm font-semibold text-[var(--color-primary)] transition-colors hover:bg-[var(--color-primary)]/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+            aria-label={`Call CommandTec at ${PHONE}`}
           >
-            <Icon name="phone" className="w-4 h-4" strokeWidth={0} fill="currentColor" />
-            <span>{PHONE}</span>
+            <Icon name="phone" className="h-4 w-4" strokeWidth={0} fill="currentColor" />
+            <span className="hidden sm:inline">{PHONE}</span>
           </a>
           <a
-            href={CTA.demoAnchor}
-            className="inline-flex items-center gap-2 bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)] transition-colors rounded-lg px-4 md:px-5 py-2 md:py-2.5 font-semibold text-sm shadow-cta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2"
+            href={CTA.contactAnchor}
+            className="inline-flex min-h-[40px] items-center gap-2 rounded-md bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-white shadow-cta transition-colors hover:bg-[var(--color-primary-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 md:px-5"
           >
-            {CTA.primary}
-            <Icon name="arrow" className="w-3.5 h-3.5" strokeWidth={2.5} />
+            <span className="hidden sm:inline">Free consultation</span>
+            <span className="sm:hidden">Consult</span>
+            <Icon name="arrow" className="h-3.5 w-3.5" strokeWidth={2.5} />
           </a>
         </div>
       </div>

@@ -7,7 +7,6 @@ interface TrackingConfig {
   siteId?: string;
   gtmId?: string;
   gaId?: string;
-  pixelId?: string;
 }
 
 declare global {
@@ -18,7 +17,7 @@ declare global {
   }
 }
 
-export function useTracking(config: TrackingConfig) {
+export function useTracking(config: TrackingConfig): void {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -29,7 +28,6 @@ export function useTracking(config: TrackingConfig) {
         siteId: config.siteId,
         gtmId: config.gtmId,
         gaId: config.gaId,
-        pixelId: config.pixelId,
       };
     }
 
