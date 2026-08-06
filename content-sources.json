@@ -1,0 +1,184 @@
+{
+  "customer": "CommandTec",
+  "landing_page": "https://info.commandtec.net",
+  "verified_at": "2026-08-06",
+  "sources": [
+    {
+      "claim": "The CommandTec team was responsive and provided clarifications on the appraisal process, which allowed us to plan and prepare for the appraisal-related upcoming activities. — Lisa C., Precise Software Solutions, Inc.",
+      "source_url": "https://commandtec.net/services/",
+      "verified": true
+    },
+    {
+      "claim": "All around a great experience. — Kathy D., Neil Hoosier & Associates",
+      "source_url": "https://commandtec.net/services/",
+      "verified": true
+    },
+    {
+      "claim": "In my experience with CommandTec, they set the example for outstanding service and exceeded expectations during our ISO 9001 Surveillance Audit. Great company and staff. — Lee L., Information System Security Officer (ISSO), Silotech Group, Inc., San Antonio, Texas",
+      "source_url": "https://commandtec.net/services/",
+      "verified": true
+    },
+    {
+      "claim": "Many kudos to Lori and team. We are very grateful for their expertise and support in getting us thoroughly prepared for out audit. Lori was very responsive to our questions and concerns. She was very helpful in our company achieving ISO 9001:2015 certification. — Dee T., QA Manager, SoftDev, Inc., Raleigh, North Carolina",
+      "source_url": "https://commandtec.net/services/",
+      "verified": true
+    },
+    {
+      "claim": "Amazing organization to work with. — Christopher H., V3Gate",
+      "source_url": "https://commandtec.net/services/",
+      "verified": true
+    },
+    {
+      "claim": "Our expectations were met above and beyond! CommandTec was quick, knowledgeable, and a true pleasure to work with! — Kelsey B., GRSi, Frederick, Maryland",
+      "source_url": "https://commandtec.net/services/",
+      "verified": true
+    },
+    {
+      "claim": "260+ commercial clients supported in obtaining ISO and CMMI process improvement certifications",
+      "source_url": "https://commandtec.net/wp-content/uploads/2026/05/Commercial-Capability-Statement-CommandTec-2026.pdf",
+      "verified": true,
+      "note": "Confirmed in the Atlas task input_data.content_requests as a call-confirmed proof point. The public website page /commercial-clients/ still states the older figure 'over 250 clients served'."
+    },
+    {
+      "claim": "20 years in business — CommandTec was founded in 2007 by Lori Diaz and federally registered in July 2008",
+      "source_url": "https://commandtec.net/about-us/",
+      "verified": true,
+      "note": "Derived from the 2007 founding date; confirmed in the Atlas task input_data.content_requests."
+    },
+    {
+      "claim": "Never lost a client",
+      "source_url": "atlas-task:2a3a1179-f628-4bb0-b7c1-2e98eda65ea6",
+      "verified": true,
+      "note": "Confirmed by the customer on the MEGA ads strategy call and recorded in the task's content_requests. Not published on commandtec.net."
+    },
+    {
+      "claim": "Cradle-to-grave full service; competitive pricing; US-based practitioners",
+      "source_url": "atlas-task:2a3a1179-f628-4bb0-b7c1-2e98eda65ea6",
+      "verified": true,
+      "note": "Confirmed by the customer on the MEGA ads strategy call and recorded in the task's content_requests."
+    },
+    {
+      "claim": "Free consultation for first-time clients; first-engagement discount for service-disabled veteran-owned companies",
+      "source_url": "atlas-task:2a3a1179-f628-4bb0-b7c1-2e98eda65ea6",
+      "verified": true,
+      "note": "The two authorized offers, per the task's content_requests."
+    },
+    {
+      "claim": "CommandTec's Quality Management System is certified to ISO 9001:2015",
+      "source_url": "https://commandtec.net/commercial-clients/",
+      "verified": true
+    },
+    {
+      "claim": "CommandTec holds ISO 9001:2015, ISO/IEC 27001:2022, ISO/IEC 20000-1:2018, CMMI SVC ML3, and CMMC 2.0 Level 2 certifications",
+      "source_url": "atlas-task:2a3a1179-f628-4bb0-b7c1-2e98eda65ea6",
+      "verified": true,
+      "note": "Call-confirmed in the task's content_requests; CMMC 2.0 Level 2 independently corroborated below."
+    },
+    {
+      "claim": "CommandTec achieved CMMC 2.0 Level 2 certification via a C3PAO third-party assessment on May 8, 2026, meeting NIST SP 800-171 requirements across 110 security controls in 14 control families",
+      "source_url": "https://commandtec.net/2026/05/08/commandtec-achieves-cmmc-2-0-level-2-c3pao-certification/",
+      "verified": true
+    },
+    {
+      "claim": "Standards supported: ISO 9001:2015 Quality Management Systems, ISO/IEC 27001:2022 Information Security Management Systems, ISO/IEC 20000-1:2018 IT Service Management Systems, and CMMI Development and Services (All Levels)",
+      "source_url": "https://commandtec.net/services/",
+      "verified": true
+    },
+    {
+      "claim": "ISO 14001 Environmental Management Systems is a supported standard",
+      "source_url": "https://commandtec.net/government-clients/",
+      "verified": true
+    },
+    {
+      "claim": "CommandTec prepares businesses pursuing government contracts for ISO and CMMI certifications, often required to compete for and be awarded point-based contracts such as IDIQs, MATOCs, and BPAs. The company develops documentation, policies, and processes, improves efficiency, and trains organizations on audit requirements.",
+      "source_url": "https://commandtec.net/",
+      "verified": true
+    },
+    {
+      "claim": "CommandTec provides turnkey ISO and CMMI consulting, supporting organizations from start to finish, and coordinates appraisals and audits with lead appraisers and auditors",
+      "source_url": "https://commandtec.net/government-clients/",
+      "verified": true
+    },
+    {
+      "claim": "CommandTec helps commercial clients of all sizes get ready to do business with the government, guiding them through ISO and CMMI certifications and helping make them more competitive for IDIQs and other government contract opportunities",
+      "source_url": "https://commandtec.net/commercial-clients/",
+      "verified": true
+    },
+    {
+      "claim": "Founder and CEO Lori Diaz has personally helped over 150 small businesses achieve their quality standards and holds CCP (Certified CMMI Professional), CISM, and CEH",
+      "source_url": "https://commandtec.net/team/",
+      "verified": true
+    },
+    {
+      "claim": "CommandTec is certified 8(a), EDWOSB, WOSB, SDVOSB, and HUBZone",
+      "source_url": "https://www.highergov.com/awardee/commandtec-llc-13281204/",
+      "verified": true
+    },
+    {
+      "claim": "CommandTec received the HIRE Vets Gold Medallion Award in 2025 from the U.S. Department of Labor Veterans' Employment and Training Service",
+      "source_url": "https://commandtec.net/2025/11/26/hire-vets-medallion-award-2025/",
+      "verified": true
+    },
+    {
+      "claim": "CommandTec is headquartered in Huntsville, Alabama with additional offices in San Antonio, Texas and Puerto Rico; ISO/CMMI consulting is delivered remotely nationwide",
+      "source_url": "https://commandtec.net/commercial-clients/",
+      "verified": true,
+      "note": "Nationwide US remote delivery and the exclusion of Canada were confirmed on the MEGA ads strategy call."
+    },
+    {
+      "claim": "Tagline: Empower Your Process",
+      "source_url": "https://commandtec.net/",
+      "verified": true
+    },
+    {
+      "claim": "Tracked campaign phone number 877-797-3414",
+      "source_url": "atlas-task:2a3a1179-f628-4bb0-b7c1-2e98eda65ea6",
+      "verified": true,
+      "note": "MEGA CallTrackingMetrics routing number provided in input_data.phone_routing_number. This is NOT CommandTec's published main office number."
+    }
+  ],
+  "imagery": [
+    {
+      "file": "public/logo.png",
+      "source": "Client Drive Brand Assets folder — 'Command Tec Logo.png'",
+      "verified": true
+    },
+    {
+      "file": "public/logo-white.png",
+      "source": "Client Drive Brand Assets folder — 'commandtec logo white (no background).png'",
+      "verified": true
+    },
+    {
+      "file": "src/app/icon.png, src/app/apple-icon.png",
+      "source": "Client Drive Brand Assets folder — 'just logo transparent.png' orb mark, composited on brand deep green #064227",
+      "verified": true
+    },
+    {
+      "file": "public/images/hero-launch.jpg",
+      "source": "AI-generated (nano banana) in the register established by the client's own Drive Creative Assets rocket-launch banners '4.png' and '10.png'",
+      "verified": true
+    },
+    {
+      "file": "public/images/iso-standards.jpg, cmmi-maturity.jpg, contract-scoring.jpg",
+      "source": "AI-generated (nano banana) line-art diagrams matching the client's own CMMI AIM creative treatment (bright-green outline linework on deep green)",
+      "verified": true
+    },
+    {
+      "file": "public/images/practitioner-team.jpg",
+      "source": "AI-generated (nano banana); wide from-behind composition with no faces visible, per the standing imagery rule",
+      "verified": true
+    }
+  ],
+  "banned_claims": [
+    "No implied US government endorsement, sponsorship, or affiliation; no federal agency insignia, seals, or agency client logos",
+    "No guaranteed certification or guaranteed maturity-level outcome",
+    "No presentation of CommandTec as a registrar, auditor, certifying body, or appraisal authority",
+    "No CAGE code, UEI, EIN, GSA MAS contract number, or named federal agency customers",
+    "No dollar figures, price ranges, or budget thresholds in visible copy",
+    "No AS9100 (out of scope for this campaign)",
+    "No CMMC assessment services (CommandTec holds CMMC 2.0 Level 2 as a credential only)",
+    "No Canada or non-US geography",
+    "No copy addressing individuals seeking personal certifications, training seats, exam prep, or jobs",
+    "No CommandTec federal services division content (IT, cybersecurity, C5I, logistics, admin support, training, physical security)"
+  ]
+}
