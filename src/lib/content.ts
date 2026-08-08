@@ -118,18 +118,18 @@ export const ISO = {
 // ─── CMMI block ───────────────────────────────────────────────────────────────
 export const CMMI = {
   eyebrow: "CMMI appraisal consulting",
-  headline: "CMMI maturity, built as a real process system — then appraised.",
-  lead: "An appraiser measures. We build. CommandTec develops the process system that earns the maturity level, proves it out with your teams, and then coordinates the formal appraisal with a certified lead appraiser. We're all practitioners — the people preparing you have run these engagements, not just read the model.",
+  headline: "CMMI maturity across every domain, built as a real process system — then appraised.",
+  lead: "An appraiser measures. We build. CommandTec prepares organizations for CMMI maturity across every domain of the model — Development, Services, and the rest — at any maturity level, developing the process system that earns the level, proving it out with your teams, and then coordinating the formal appraisal with a certified lead appraiser. We're all practitioners — the people preparing you have run these engagements, not just read the model.",
   standards: [
     {
-      code: "CMMI for Development (DEV)",
+      code: "CMMI — all domains",
       name: "All maturity levels",
-      body: "For organizations that build software or systems and must demonstrate development maturity to win or keep contracts. We assess where you are against the DEV practice areas, build the processes and artifacts that close the gap, and train your engineers to run them for real — because an appraisal team looks for lived practice, not shelfware. We prepare you for the level your opportunity requires and coordinate the appraisal.",
+      body: "CommandTec supports the full CMMI model family — Development (DEV), Services (SVC), and the other CMMI domains — at every maturity level, and we scope to whichever domain and level your contract or opportunity actually requires. We assess where you are against the practice areas, build the processes and artifacts that close the gap, and train your teams to run them for real — because an appraisal team looks for lived practice, not shelfware. Then we coordinate the appraisal.",
     },
     {
       code: "CMMI for Services (SVC)",
-      name: "All maturity levels",
-      body: "For organizations delivering services under contract. We build the service-establishment and delivery processes the SVC model expects and ready your teams for appraisal. CommandTec itself is appraised at CMMI SVC Maturity Level 3 — this is a model we operate under, not one we only advise on. That practitioner footing is the difference between a binder and a working system.",
+      name: "A model we operate under",
+      body: "This is the model CommandTec runs under itself: we are appraised at CMMI SVC Maturity Level 3, so we operate a service-delivery process system rather than only advise on one. For clients delivering services under contract, we build the service-establishment and delivery processes the SVC model expects and ready your teams for appraisal. That practitioner footing — a working system, not a binder — is what an appraisal team can see and test.",
     },
     {
       code: "CMMI high maturity (ML4 / ML5)",
@@ -137,9 +137,9 @@ export const CMMI = {
       body: "High maturity is a different discipline: statistical and quantitative management of your processes at ML4, and process optimization and defect prevention at ML5. We help you stand up the measurement framework, baselines, and process-performance models that high-maturity appraisals demand, and prepare your teams to defend them. High maturity is earned through data — we help you build the data.",
     },
     {
-      code: "Multi-model DEV-SVC",
+      code: "Multi-model coverage",
       name: "Combined appraisals",
-      body: "Many organizations do both development and services under the same roof and need coverage across both. We scope and build a combined process system that satisfies DEV and SVC together, so you prepare once and appraise once rather than running two disconnected programs. We coordinate the multi-model appraisal with a certified lead appraiser.",
+      body: "Many organizations operate across more than one CMMI domain under the same roof and need coverage across all of them. We scope and build one combined process system that satisfies the domains that apply to you together, so you prepare once and appraise once rather than running two disconnected programs. We coordinate the multi-model appraisal with a certified lead appraiser.",
     },
   ],
   extra: {
