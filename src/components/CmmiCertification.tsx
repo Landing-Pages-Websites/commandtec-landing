@@ -10,8 +10,8 @@ export function CmmiCertification(): React.ReactElement {
       lead={CMMI.lead}
       standards={CMMI.standards}
       extra={CMMI.extra}
-      imageSrc="/images/cmmi-maturity.jpg"
-      imageAlt="Line diagram of three concentric circles around a center dot beside an ascending staircase of five bars, on deep green."
+      imageSrc="/images/process-build.jpg"
+      imageAlt="Two colleagues at a standing desk reviewing a process-flow diagram on a laptop by a bright office window, building a CMMI process system together."
     />
   );
 }

@@ -3,11 +3,13 @@ import { Reveal } from "@/components/Reveal";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { FeatureIcon } from "@/components/ui/FeatureIcon";
 import { CtaRow } from "@/components/ui/CtaRow";
+import { Icon } from "@/components/icons";
 
 interface Standard {
   code: string;
   name: string;
-  body: string;
+  summary: string;
+  bullets: string[];
 }
 
 interface ExtraCard {
@@ -85,8 +87,20 @@ export function StandardsBlock({
                   {s.name}
                 </p>
                 <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-text)]/80">
-                  {s.body}
+                  {s.summary}
                 </p>
+                <ul className="mt-4 space-y-2">
+                  {s.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2.5 text-[14px] leading-snug text-[var(--color-text)]/75">
+                      <Icon
+                        name="check"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-primary)]"
+                        strokeWidth={2.5}
+                      />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
               </article>
             </Reveal>
           ))}

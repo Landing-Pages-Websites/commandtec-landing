@@ -6,14 +6,6 @@ import { useEffect, useState } from "react";
 import { CTA, PHONE, PHONE_HREF } from "@/lib/content";
 import { Icon } from "@/components/icons";
 
-const NAV = [
-  { label: "ISO", href: "#iso-certification" },
-  { label: "CMMI", href: "#cmmi-certification" },
-  { label: "Process", href: "#how-it-works" },
-  { label: "Why us", href: "#why-commandtec" },
-  { label: "FAQ", href: "#faq" },
-];
-
 export function Header(): React.ReactElement {
   const [scrolled, setScrolled] = useState(false);
 
@@ -53,21 +45,6 @@ export function Header(): React.ReactElement {
             }`}
           />
         </Link>
-
-        <nav
-          aria-label="Section navigation"
-          className="hidden items-center gap-7 lg:flex"
-        >
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-[var(--color-muted)] transition-colors hover:text-[var(--color-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded-sm"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
 
         <div className="flex items-center gap-2 md:gap-3">
           <a

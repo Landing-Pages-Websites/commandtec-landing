@@ -12,21 +12,22 @@ export function Hero(): React.ReactElement {
       id="hero"
       className="relative isolate overflow-hidden bg-[var(--color-ink)] pb-14 pt-24 md:pb-20 md:pt-32"
     >
-      {/* Background imagery + scrim */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10">
+      {/* Background imagery + scrim — bright daylit operations room, kept clearly
+          visible on the right while a left-anchored gradient protects the H1. */}
+      <div aria-hidden="true" className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-launch.jpg"
+          src="/images/hero-operations.jpg"
           alt=""
           fill
           priority
           sizes="100vw"
           className="object-cover object-right"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-ink)] via-[var(--color-ink)]/85 to-[var(--color-ink)]/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(6,66,39,0.72)] via-transparent to-[var(--color-ink)]/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-ink)]/92 via-[var(--color-ink)]/70 to-[var(--color-ink)]/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/50 via-transparent to-transparent" />
       </div>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-x-12 gap-y-6 px-5 md:px-8 lg:grid-cols-12">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-start gap-x-12 gap-y-6 px-5 md:px-8 lg:grid-cols-12">
         {/* Top-left: eyebrow + H1 */}
         <div className="lg:col-span-7">
           <Reveal className="space-y-4">

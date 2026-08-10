@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "ISO & CMMI Certification Consulting, Run End to End | CommandTec",
     description:
       "Cradle-to-grave ISO and CMMI certification preparation by US-based practitioners. 20 years, 260+ commercial clients, never lost a client. Free consultation.",
-    images: ["/images/hero-launch.jpg"],
+    images: ["/images/hero-operations.jpg"],
     type: "website",
   },
   icons: {

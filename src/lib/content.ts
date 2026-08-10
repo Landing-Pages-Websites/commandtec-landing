@@ -27,7 +27,7 @@ export const HERO = {
   h1Lead: "ISO and CMMI certification,",
   h1Accent: "run end to end.",
   subhead:
-    "A contract or a prime's flow-down clause named a standard you don't hold yet. We take it from start to finish — developing the documentation, policies, and processes, training your team on audit requirements, and coordinating the audit or appraisal. US-based practitioners, cradle to grave.",
+    "A contract or prime's flow-down clause named a standard you don't hold yet. We take it start to finish — documentation, processes, team training, and audit coordination. US-based practitioners, cradle to grave.",
   proofLine: "20 years · 260+ commercial clients · never lost a client",
   chips: [
     "US-based practitioners",
@@ -61,22 +61,22 @@ export const CREDENTIALS = {
 export const WHY_CERT = {
   eyebrow: "Why the standard is on the table",
   headline: "The certification is the price of admission to the contract.",
-  lead: "ISO and CMMI certifications are often required to compete for and be awarded point-based contracts — IDIQs, MATOCs, and BPAs — and to satisfy the flow-down requirements a prime pushes down to its subcontractors. Without the credential, you can't bid, or you bid and score short.",
+  lead: "ISO and CMMI certifications are often required to compete for point-based contracts — IDIQs, MATOCs, and BPAs — and to satisfy a prime's flow-down requirements. Without the credential, you can't bid, or you bid and score short.",
   points: [
     {
       icon: "clock",
       title: "The clock is the standard's, not a salesperson's",
-      body: "An ISO management system needs months of operating evidence before an audit can happen. A CMMI appraisal has to be scheduled with a certified lead appraiser well in advance. The only real deadline is your own bid date or recertification window — and it is usually closer than the standard allows for.",
+      body: "An ISO system needs months of operating evidence; a CMMI appraisal must be booked with a lead appraiser in advance. Your bid date is closer than the standard allows.",
     },
     {
       icon: "alert",
       title: "The DIY path is where bids get missed",
-      body: "Teams try to write the documentation themselves between their day jobs. Months disappear, an audit fails on a gap nobody caught, or the bid window closes before the certificate is in hand. The standard is unforgiving of guesswork.",
+      body: "Teams try to write the documentation between day jobs. Months disappear, an audit fails on a missed gap, or the bid window closes before the certificate arrives.",
     },
     {
       icon: "target",
       title: "Certification makes you competitive, not just compliant",
-      body: "We help organizations get ready to do business with the government and become more competitive for IDIQs and multiple-award vehicles. The certificate is the entry ticket; a real management system is what keeps you winning re-competes.",
+      body: "We ready organizations to do business with the government and compete for IDIQs and multiple-award vehicles. The certificate is the entry ticket; a real system keeps you winning re-competes.",
     },
   ],
 };
@@ -85,33 +85,57 @@ export const WHY_CERT = {
 export const ISO = {
   eyebrow: "ISO certification consulting",
   headline: "ISO management systems, prepared and coordinated to audit.",
-  lead: "We build the management system the standard requires, run the internal audits that prove it works, and coordinate the certification audit with an independent registrar. CommandTec prepares you and manages the process — the registrar performs the audit and issues the certificate. We are not the registrar.",
+  lead: "We build the management system the standard requires, run the internal audits that prove it works, and coordinate the certification audit with an independent registrar. We prepare and manage the process — we are not the registrar.",
   standards: [
     {
       code: "ISO 9001:2015",
       name: "Quality Management Systems",
-      body: "The quality standard most contracts name first. We develop your quality manual, procedures, and records, map your existing operations to the clauses, and generate the operating evidence an auditor expects to see. Then we run a full internal audit and management review so nothing is a surprise on audit day. Typical need: any organization whose customers or solicitations require a certified QMS. We support both first-time certification and ongoing compliance.",
+      summary:
+        "The quality standard most contracts name first — we take your QMS from documentation to a clean certification audit.",
+      bullets: [
+        "Quality manual, procedures, and records",
+        "Operations mapped to every clause",
+        "Internal audit and management review",
+      ],
     },
     {
       code: "ISO/IEC 27001:2022",
       name: "Information Security Management Systems",
-      body: "The information-security standard for organizations that handle sensitive data or must prove security maturity to a customer. We define the ISMS scope, run the risk assessment and treatment plan, build the Statement of Applicability against the current 2022 control set, and conduct internal audits to confirm the controls actually operate. We take you to certification readiness and coordinate the certification audit.",
+      summary:
+        "The information-security standard for organizations handling sensitive data or proving security maturity to a customer.",
+      bullets: [
+        "ISMS scope and risk assessment",
+        "Statement of Applicability, 2022 controls",
+        "Internal audits confirm controls operate",
+      ],
     },
     {
       code: "ISO/IEC 20000-1:2018",
       name: "IT Service Management Systems",
-      body: "The service-management standard for organizations delivering IT services under contract. We build the service management system — the processes for service delivery, incident and change management, and continual improvement — and prepare you for both initial certification and the surveillance audits that follow. Existing certificate holders use us to keep the system audit-ready year over year.",
+      summary:
+        "The service-management standard for organizations delivering IT services under contract.",
+      bullets: [
+        "Service delivery and incident processes",
+        "Change management and continual improvement",
+        "Ready for initial and surveillance audits",
+      ],
     },
     {
       code: "ISO 14001",
       name: "Environmental Management Systems",
-      body: "The environmental-management standard for organizations that need to demonstrate environmental responsibility to win or keep work. We establish the environmental management system, identify aspects and impacts, set objectives, and prepare the documentation and evidence for certification. As with every ISO engagement, we coordinate the audit with an independent registrar rather than perform it ourselves.",
+      summary:
+        "The environmental-management standard for organizations proving environmental responsibility to win or keep work.",
+      bullets: [
+        "Environmental aspects and impacts identified",
+        "Objectives, documentation, and evidence",
+        "Audit coordinated with an independent registrar",
+      ],
     },
   ],
   extra: {
     icon: "refresh",
     title: "Recertification & surveillance-audit support",
-    body: "Already certified? Certificates lapse and surveillance audits recur. We keep your management system current, close findings from prior audits, and carry you through recertification so a credential you fought for never quietly expires.",
+    body: "Already certified? We keep your system current, close prior findings, and carry you through recertification so a hard-won credential never quietly expires.",
   },
 };
 
@@ -119,33 +143,57 @@ export const ISO = {
 export const CMMI = {
   eyebrow: "CMMI appraisal consulting",
   headline: "CMMI maturity across every domain, built as a real process system — then appraised.",
-  lead: "An appraiser measures. We build. CommandTec prepares organizations for CMMI maturity across every domain of the model — Development, Services, and the rest — at any maturity level, developing the process system that earns the level, proving it out with your teams, and then coordinating the formal appraisal with a certified lead appraiser. We're all practitioners — the people preparing you have run these engagements, not just read the model.",
+  lead: "An appraiser measures; we build. CommandTec prepares organizations for CMMI maturity across every domain and level — building the process system, proving it out with your teams, then coordinating the formal appraisal with a certified lead appraiser. We're all practitioners.",
   standards: [
     {
       code: "CMMI — all domains",
       name: "All maturity levels",
-      body: "CommandTec supports the full CMMI model family — Development (DEV), Services (SVC), and the other CMMI domains — at every maturity level, and we scope to whichever domain and level your contract or opportunity actually requires. We assess where you are against the practice areas, build the processes and artifacts that close the gap, and train your teams to run them for real — because an appraisal team looks for lived practice, not shelfware. Then we coordinate the appraisal.",
+      summary:
+        "We scope to the domain and level your contract requires, close the gap, and coordinate the appraisal.",
+      bullets: [
+        "Development, Services, and other domains",
+        "Assessed against the practice areas",
+        "Teams trained to run it for real",
+      ],
     },
     {
       code: "CMMI for Services (SVC)",
       name: "A model we operate under",
-      body: "This is the model CommandTec runs under itself: we are appraised at CMMI SVC Maturity Level 3, so we operate a service-delivery process system rather than only advise on one. For clients delivering services under contract, we build the service-establishment and delivery processes the SVC model expects and ready your teams for appraisal. That practitioner footing — a working system, not a binder — is what an appraisal team can see and test.",
+      summary:
+        "The model CommandTec runs under itself — we're appraised at CMMI SVC Maturity Level 3.",
+      bullets: [
+        "Service-establishment and delivery processes",
+        "A working system, not a binder",
+        "Teams readied for appraisal",
+      ],
     },
     {
       code: "CMMI high maturity (ML4 / ML5)",
       name: "Quantitative process management",
-      body: "High maturity is a different discipline: statistical and quantitative management of your processes at ML4, and process optimization and defect prevention at ML5. We help you stand up the measurement framework, baselines, and process-performance models that high-maturity appraisals demand, and prepare your teams to defend them. High maturity is earned through data — we help you build the data.",
+      summary:
+        "High maturity is earned through data — statistical management at ML4, optimization and defect prevention at ML5.",
+      bullets: [
+        "Measurement framework and baselines",
+        "Process-performance models built",
+        "Teams prepared to defend them",
+      ],
     },
     {
       code: "Multi-model coverage",
       name: "Combined appraisals",
-      body: "Many organizations operate across more than one CMMI domain under the same roof and need coverage across all of them. We scope and build one combined process system that satisfies the domains that apply to you together, so you prepare once and appraise once rather than running two disconnected programs. We coordinate the multi-model appraisal with a certified lead appraiser.",
+      summary:
+        "Operate across more than one CMMI domain? We build one combined process system so you prepare once and appraise once.",
+      bullets: [
+        "One system for every applicable domain",
+        "Prepare once, not twice",
+        "Coordinated with a lead appraiser",
+      ],
     },
   ],
   extra: {
     icon: "badge",
     title: "Led by a Certified CMMI Professional",
-    body: "Lori Diaz, our founder and CEO, holds the CCP (Certified CMMI Professional) credential. We never promise a specific maturity-level outcome — no honest consultant can. We prepare you until the process system is real and defensible, then coordinate the formal appraisal with a certified lead appraiser.",
+    body: "Founder and CEO Lori Diaz holds the CCP credential. We never promise a maturity-level outcome — we prepare you until the process system is real, then coordinate the formal appraisal.",
   },
 };
 
@@ -153,37 +201,37 @@ export const CMMI = {
 export const HOW_IT_WORKS = {
   eyebrow: "Cradle to grave",
   headline: "One engagement, start to finish.",
-  lead: "You don't hand off between vendors and you don't assemble the program yourself. We run all six stages — you keep doing the work your business actually does.",
+  lead: "You don't hand off between vendors or assemble the program yourself. We run all six stages while you keep doing the work your business actually does.",
   steps: [
     {
       icon: "chat",
       title: "Free consultation & scoping",
-      body: "We start by identifying which standard your opportunity actually requires — the solicitation or flow-down clause usually names it, and if it doesn't, we work it out with you. No cost, no obligation.",
+      body: "We identify which standard your opportunity requires — no cost, no obligation.",
     },
     {
       icon: "search",
       title: "Gap analysis",
-      body: "We assess your current operations against every clause or practice area of the target standard and give you an honest map of what exists, what's missing, and what has to change.",
+      body: "We map your operations against every clause or practice area and show exactly what's missing.",
     },
     {
       icon: "file",
       title: "Documentation & process build",
-      body: "We develop the documentation, policies, and processes the standard requires — and improve efficiency while we're in there. This is the heavy lifting, and it is ours to carry.",
+      body: "We develop the documentation, policies, and processes the standard requires — the heavy lifting is ours.",
     },
     {
       icon: "users",
       title: "Staff training",
-      body: "We train your organization on the requirements and on what auditors and appraisers actually look for, so your people can run the system and speak to it with confidence on the day.",
+      body: "We train your team on the requirements and what auditors and appraisers actually look for.",
     },
     {
       icon: "clipboardCheck",
       title: "Internal audit & readiness review",
-      body: "We run the internal audit and a full readiness review, surface findings while there's still time to fix them, and confirm you are genuinely ready before anyone external arrives.",
+      body: "We run the internal audit, surface findings while there's time to fix them, and confirm you're ready.",
     },
     {
       icon: "award",
       title: "Third-party audit or formal appraisal",
-      body: "We coordinate the certification audit or the formal appraisal with your registrar or certified lead appraiser and stand with you through it. They assess and certify; we make sure you're prepared for it.",
+      body: "We coordinate the audit or appraisal with your registrar or lead appraiser and stand with you throughout.",
     },
   ],
 };
@@ -192,27 +240,27 @@ export const HOW_IT_WORKS = {
 export const WHY_US = {
   eyebrow: "Why CommandTec",
   headline: "Practitioners who hold the standards they prepare you for.",
-  lead: "We are not resellers or template shops. CommandTec is certified to ISO 9001:2015, ISO/IEC 27001:2022, and ISO/IEC 20000-1:2018, appraised at CMMI SVC ML3, and assessed at CMMC 2.0 Level 2. We consult on the standards we live under.",
+  lead: "We're not resellers or template shops. CommandTec is certified to ISO 9001:2015, ISO/IEC 27001:2022, and ISO/IEC 20000-1:2018, appraised at CMMI SVC ML3, and assessed at CMMC 2.0 Level 2 — we consult on the standards we live under.",
   points: [
     {
       icon: "shield",
       title: "260+ clients, never lost one",
-      body: "Over 20 years we have supported more than 260 commercial clients through ISO and CMMI certification, and we have never lost a client. That is the proof we stand on — not a guarantee, a track record.",
+      body: "Over 20 years we've carried 260+ clients through ISO and CMMI certification and never lost one — a track record, not a guarantee.",
     },
     {
       icon: "users",
       title: "US-based practitioners",
-      body: "Every engagement is run by US-based practitioners who have done this work, delivered remotely to organizations in all 50 states. You are never handed to an offshore queue or a junior generalist.",
+      body: "Every engagement is run by US-based practitioners who've done this work, delivered remotely to all 50 states. Never an offshore queue.",
     },
     {
       icon: "badge",
       title: "Led by a CCP-credentialed founder",
-      body: "Founder and CEO Lori Diaz has personally helped over 150 small businesses achieve their quality standards and holds the CCP (Certified CMMI Professional), CISM, and CEH credentials. The expertise at the top is real and hands-on.",
+      body: "Founder and CEO Lori Diaz has helped 150+ small businesses reach their quality standards and holds the CCP, CISM, and CEH credentials.",
     },
     {
       icon: "scale",
       title: "Competitive pricing, full service",
-      body: "Cradle-to-grave delivery at competitive pricing — one engagement covering gap analysis through appraisal, not a stack of change orders. You know what you're getting and who is doing it.",
+      body: "Cradle-to-grave delivery at competitive pricing — one engagement from gap analysis through appraisal, not a stack of change orders.",
     },
   ],
   socioIntro: "Socioeconomic credentials — supporting corroboration:",
@@ -282,12 +330,12 @@ export const OFFERS = {
     {
       icon: "chat",
       title: "Free consultation for first-time clients",
-      body: "New to CommandTec? Your first consultation is free. We identify the standard your opportunity requires, scope the engagement honestly, and give you a clear path forward — with no cost and no obligation to proceed.",
+      body: "New to CommandTec? Your first consultation is free — we identify the standard your opportunity requires and scope the engagement, with no obligation.",
     },
     {
       icon: "badge",
       title: "First-engagement discount for service-disabled veteran-owned companies",
-      body: "Service-disabled veteran-owned companies receive a discount on their first engagement with us. As an SDVOSB ourselves and a 2025 HIRE Vets Gold Medallion recipient, standing with veteran-owned businesses is who we are, not a promotion.",
+      body: "Service-disabled veteran-owned companies receive a discount on their first engagement. As an SDVOSB and 2025 HIRE Vets Gold Medallion recipient, standing with veteran-owned businesses is who we are.",
     },
   ],
 };
@@ -296,27 +344,27 @@ export const OFFERS = {
 export const FAQ = [
   {
     q: "Which standard does my contract require?",
-    a: "Usually the solicitation or the prime's flow-down clause names it directly. If it doesn't, that's exactly what the free consultation is for — we read the requirement with you and identify the standard and level your opportunity actually calls for before you commit to anything.",
+    a: "Usually the solicitation or the prime's flow-down clause names it. If it doesn't, that's what the free consultation is for — we read the requirement with you and identify the standard and level your opportunity calls for.",
   },
   {
     q: "How long does certification take?",
-    a: "It depends on the standard and the size of your organization. ISO management systems need a period of operating evidence before an audit can take place, and CMMI appraisals must be scheduled with a certified lead appraiser in advance. We can't quote a single timeline honestly — but in the consultation we'll map a realistic schedule against your actual bid or recertification date.",
+    a: "It depends on the standard and your size. ISO systems need operating evidence before an audit; CMMI appraisals must be scheduled in advance. In the consultation we map a realistic schedule against your bid or recertification date.",
   },
   {
     q: "What does it cost?",
-    a: "Cost is driven by scope: which standard, which maturity level, the size and complexity of your organization, and how much of a management system you already have in place. Rather than quote a sticker that won't fit your situation, we scope the engagement in the free consultation and give you real numbers for your organization.",
+    a: "Cost is driven by scope — which standard, which level, and how much system you already have. Rather than quote a sticker that won't fit, we scope the engagement in the free consultation and give you real numbers.",
   },
   {
     q: "Do you guarantee certification?",
-    a: "No consultant can honestly guarantee a certification or a specific maturity level — the registrar or appraiser makes that determination independently. What we can tell you is that we prepare you until you are genuinely ready, and in over 20 years and 260+ clients we have never lost a client.",
+    a: "No consultant honestly can — the registrar or appraiser decides independently. What we can say: we prepare you until you're genuinely ready, and in 20+ years and 260+ clients we've never lost a client.",
   },
   {
     q: "Who performs the actual audit or appraisal?",
-    a: "An independent third party — a registrar for ISO certification, or a certified lead appraiser for CMMI. CommandTec is not the registrar, auditor, or appraisal authority. We prepare your organization and coordinate the audit or appraisal with that independent party.",
+    a: "An independent third party — a registrar for ISO, a certified lead appraiser for CMMI. CommandTec is not the registrar or appraisal authority; we prepare you and coordinate the audit or appraisal with that party.",
   },
   {
     q: "Do you work with companies outside Huntsville?",
-    a: "Yes. CommandTec is a national practice delivered remotely to organizations across all 50 states. Our headquarters is in Huntsville, Alabama, with additional offices in San Antonio, Texas and Puerto Rico, but where you are located does not change how we work with you.",
+    a: "Yes. CommandTec is a national practice delivered remotely across all 50 states. We're headquartered in Huntsville, Alabama, with offices in San Antonio, Texas and Puerto Rico — your location doesn't change how we work.",
   },
 ];
 

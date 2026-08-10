@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { FormCard } from "@/components/FormCard";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
@@ -40,6 +41,18 @@ export function Contact(): React.ReactElement {
                   {PHONE}
                 </span>
               </a>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="mt-8 overflow-hidden rounded-xl ring-1 ring-white/10">
+              <Image
+                src="/images/free-consultation.jpg"
+                alt="A CommandTec advisor and a client talking across a table over notes and coffee in a bright office during a free consultation."
+                width={760}
+                height={480}
+                sizes="(min-width: 1024px) 46vw, 100vw"
+                className="h-full w-full object-cover"
+              />
             </div>
           </Reveal>
         </div>

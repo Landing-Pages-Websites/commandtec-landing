@@ -10,8 +10,8 @@ export function IsoCertification(): React.ReactElement {
       lead={ISO.lead}
       standards={ISO.standards}
       extra={ISO.extra}
-      imageSrc="/images/iso-standards.jpg"
-      imageAlt="Line diagram of three overlapping ruled document outlines joined by a fine path to a circular checkmark, on deep green."
+      imageSrc="/images/audit-readiness.jpg"
+      imageAlt="A consultant reviewing a printed procedures document beside an open binder and a laptop in a bright conference room, preparing for a certification audit."
     />
   );
 }
