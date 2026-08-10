@@ -427,6 +427,8 @@ export function FormCard({
             type="tel"
             required
             inputMode="numeric"
+            pattern="\(\d{3}\) \d{3}-\d{4}"
+            title="Enter a 10-digit US phone number, e.g. (555) 123-4567"
             autoComplete="tel"
             placeholder="Phone (10 digits)"
             value={data.phone}
