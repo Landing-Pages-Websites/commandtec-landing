@@ -41,25 +41,25 @@ export function HowItWorks(): React.ReactElement {
           </div>
         </div>
 
-        <ol className="relative mt-14 space-y-8">
-          <span
-            aria-hidden="true"
-            className="absolute left-6 top-6 bottom-6 hidden w-px bg-white/12 sm:block"
-          />
+        <ol className="mt-14 grid gap-5 lg:grid-cols-2">
           {HOW_IT_WORKS.steps.map((step, i) => (
             <Reveal key={step.title} delay={i * 50}>
-              <li className="relative flex gap-5">
-                <div className="relative z-10 shrink-0 rounded-full bg-[var(--color-ink)]">
+              <li className="group relative flex h-full gap-5 rounded-[10px] border border-white/10 bg-white/[0.03] p-7 transition-all duration-150 hover:-translate-y-0.5 hover:border-[var(--color-accent-dark)] hover:shadow-card">
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-0 h-[3px] w-12 rounded-r-full bg-[var(--color-accent-dark)]"
+                />
+                <div className="shrink-0">
                   <FeatureIcon name={step.icon} onDark />
                 </div>
-                <div className="pt-1">
+                <div>
                   <p className="font-display text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-accent-dark)]">
                     Step {String(i + 1).padStart(2, "0")}
                   </p>
                   <h3 className="mt-1 font-display text-xl font-semibold text-white md:text-2xl">
                     {step.title}
                   </h3>
-                  <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-white/75">
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-white/75">
                     {step.body}
                   </p>
                 </div>
