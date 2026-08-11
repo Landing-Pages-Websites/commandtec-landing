@@ -131,7 +131,7 @@ export function FormCard({
   idPrefix = "hero",
   offerLabel = "Free consultation for first-time clients",
   heading = "Tell us which standard your contract requires",
-  subheading = "We'll identify the exact standard and scope your engagement — at no cost.",
+  subheading = "We'll identify the right standard and determine what you need to achieve compliance, at no cost.",
   submitLabel = CTA.primary,
   routeSlug,
   thankYouBody = "Thank you. A CommandTec practitioner will reach out to schedule your free consultation, identify the standard your opportunity requires, and scope the engagement — with no obligation.",
