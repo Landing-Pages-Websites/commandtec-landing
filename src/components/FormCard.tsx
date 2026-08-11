@@ -741,7 +741,7 @@ export function FormCard({
             type="tel"
             inputMode="numeric"
             autoComplete="tel"
-            placeholder="Phone (optional)"
+            placeholder="Phone (10 digits)"
             value={data.phone}
             onChange={(event) =>
               update(
