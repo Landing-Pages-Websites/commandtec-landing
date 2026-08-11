@@ -27,7 +27,7 @@ export const HERO = {
   h1Lead: "ISO and CMMI certification,",
   h1Accent: "run end to end.",
   subhead:
-    "A contract or prime's flow-down clause named a standard you don't hold yet. We take it start to finish — documentation, processes, team training, and audit coordination. US-based practitioners, cradle to grave.",
+    "Need a certification to meet contract requirements? We take it from start to finish: documentation, processes, team training, and audit or appraisal coordination. U.S.-based practitioners, cradle to grave.",
   proofLine: "20 years · 260+ commercial clients · never lost a client",
   chips: [
     "US-based practitioners",
@@ -41,7 +41,7 @@ export const HERO = {
 export const CREDENTIALS = {
   eyebrow: "We hold the certifications we consult on",
   intro:
-    "Our Quality Management System is certified by the International Organization for Standardization (ISO) 9001:2015. We do the work we prepare you for.",
+    "Our Quality Management System is certified by the International Organization for Standardization (ISO) 9001:2015. We don't just consult on certification. We've achieved it ourselves, so we know what it takes to get you there. We do the same work we prepare you for.",
   chips: [
     "ISO 9001:2015",
     "ISO/IEC 27001:2022",
@@ -157,14 +157,14 @@ export const CMMI = {
       ],
     },
     {
-      code: "CMMI for Services (SVC)",
-      name: "A model we operate under",
+      code: "CMMI AIM",
+      name: "AI capability at scale",
       summary:
-        "The model CommandTec runs under itself — we're appraised at CMMI SVC Maturity Level 3.",
+        "The integrated model for improving AI capability across teams. We build the governance and processes, then coordinate the appraisal with a CMMI Partner.",
       bullets: [
-        "Service-establishment and delivery processes",
-        "A working system, not a binder",
-        "Teams readied for appraisal",
+        "Integrated AI governance and processes",
+        "Standardized practices across teams",
+        "Prepared for a Partner appraisal",
       ],
     },
     {
