@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
             Legal
           </p>
 
-          <h1 className="max-w-4xl text-5xl font-bold leading-none text-white md:text-6xl">
+          <h1 className="max-w-4xl font-display text-5xl font-bold leading-none text-white md:text-6xl">
             Privacy Policy
           </h1>
 
@@ -66,8 +66,37 @@ export default function PrivacyPolicyPage() {
       {/* Content */}
       <section className="px-6 py-12 lg:px-8 lg:py-16">
         <article className="mx-auto max-w-4xl rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-7 shadow-card-lg md:p-10 lg:p-12">
-
-          <div className="prose-custom">
+          <div
+            className="
+              font-[var(--font-body)]
+              text-[1.02rem]
+              leading-[1.75]
+              text-[var(--color-text)]
+              [&_p]:mb-5
+              [&_h2]:mt-12
+              [&_h2]:mb-4
+              [&_h2]:font-display
+              [&_h2]:text-[clamp(1.7rem,3vw,2.15rem)]
+              [&_h2]:font-bold
+              [&_h2]:leading-tight
+              [&_h2]:text-[var(--color-deep)]
+              [&_h3]:mt-8
+              [&_h3]:mb-3
+              [&_h3]:font-display
+              [&_h3]:text-xl
+              [&_h3]:font-bold
+              [&_h3]:leading-tight
+              [&_h3]:text-[var(--color-primary)]
+              [&_ul]:mb-6
+              [&_ul]:list-disc
+              [&_ul]:pl-6
+              [&_li]:mb-2
+              [&_a]:text-[var(--color-primary)]
+              [&_a]:underline
+              [&_a]:underline-offset-4
+              [&_a:hover]:text-[var(--color-accent-light)]
+            "
+          >
             <p>
               CommandTec ("CommandTec," "we," "our," or "us") respects your
               privacy and is committed to protecting the information you
@@ -77,8 +106,8 @@ export default function PrivacyPolicyPage() {
 
             <p>
               This Privacy Policy explains how CommandTec collects, uses,
-              maintains, and discloses information obtained through our
-              website and communications.
+              maintains, and discloses information obtained through our website
+              and communications.
             </p>
 
             <h2>Information We Collect</h2>
@@ -136,7 +165,7 @@ export default function PrivacyPolicyPage() {
 
             <h2>SMS and Text Messaging</h2>
 
-            <div className="rounded-xl border-l-4 border-[var(--color-accent)] bg-[#f2f8f3] p-5">
+            <div className="mb-5 rounded-xl border-l-4 border-[var(--color-accent)] bg-[#f2f8f3] p-5">
               <p className="!mb-0 font-semibold text-[var(--color-deep)]">
                 SMS consent is not a condition of purchasing goods or
                 services.
@@ -161,8 +190,8 @@ export default function PrivacyPolicyPage() {
             </p>
 
             <p>
-              CommandTec may send one final message confirming that an
-              opt-out request has been received and processed.
+              CommandTec may send one final message confirming that an opt-out
+              request has been received and processed.
             </p>
 
             <p>
@@ -276,7 +305,7 @@ export default function PrivacyPolicyPage() {
               CommandTec&apos;s privacy practices, please contact us:
             </p>
 
-            <address className="not-italic">
+            <address className="not-italic leading-[1.8]">
               <strong>CommandTec</strong>
               <br />
               2417 Mastin Lake Road NW, Suite C
@@ -293,7 +322,7 @@ export default function PrivacyPolicyPage() {
             </address>
           </div>
 
-          {/* Bottom navigation */}
+          {/* Bottom Navigation */}
           <div className="mt-12 flex flex-col gap-4 border-t border-[var(--color-border)] pt-8 sm:flex-row sm:items-center sm:justify-between">
             <Link
               href="/terms-and-conditions/"
@@ -317,6 +346,7 @@ export default function PrivacyPolicyPage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="font-display text-xl font-bold">CommandTec</p>
+
             <p className="mt-2 text-sm text-white/60">
               2417 Mastin Lake Road NW, Suite C, Huntsville, AL 35810
             </p>
@@ -329,7 +359,9 @@ export default function PrivacyPolicyPage() {
             >
               877-797-3414
             </a>
+
             <span className="mx-2">·</span>
+
             <a
               href="mailto:contact@commandtec.net"
               className="transition hover:text-white"
@@ -343,67 +375,6 @@ export default function PrivacyPolicyPage() {
           © 2026 CommandTec. All rights reserved.
         </div>
       </footer>
-
-      {/* Legal-page typography */}
-      <style jsx>{`
-        .prose-custom {
-          color: var(--color-text);
-          font-family: var(--font-body);
-          font-size: 1.02rem;
-          line-height: 1.75;
-        }
-
-        .prose-custom p {
-          margin: 0 0 1.25rem;
-        }
-
-        .prose-custom h2 {
-          margin: 3rem 0 1rem;
-          color: var(--color-deep);
-          font-family: var(--font-display);
-          font-size: clamp(1.7rem, 3vw, 2.15rem);
-          line-height: 1.15;
-          font-weight: 700;
-          letter-spacing: -0.01em;
-        }
-
-        .prose-custom h2:first-child {
-          margin-top: 0;
-        }
-
-        .prose-custom h3 {
-          margin: 2rem 0 0.75rem;
-          color: var(--color-primary);
-          font-family: var(--font-display);
-          font-size: 1.35rem;
-          line-height: 1.25;
-          font-weight: 700;
-        }
-
-        .prose-custom ul {
-          margin: 0 0 1.5rem;
-          padding-left: 1.5rem;
-        }
-
-        .prose-custom li {
-          margin-bottom: 0.45rem;
-          padding-left: 0.25rem;
-        }
-
-        .prose-custom a {
-          color: var(--color-primary);
-          text-decoration: underline;
-          text-underline-offset: 3px;
-        }
-
-        .prose-custom a:hover {
-          color: var(--color-accent-light);
-        }
-
-        .prose-custom address {
-          line-height: 1.8;
-        }
-      `}</style>
     </main>
   );
 }
