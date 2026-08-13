@@ -35,6 +35,8 @@ const NOT_SURE = "Not sure yet";
 const BUDGET_LOW = "Under $15,000";
 const BUDGET_HIGH = "$28,000 or more";
 
+const SUBMIT_ERROR_MESSAGE = `Something went wrong sending your request. Please try again, or call us at ${PHONE}.`;
+
 type FieldKey =
   | "firstName"
   | "lastName"
@@ -216,6 +218,7 @@ export function FormCard({
   >({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const inFlightRef = useRef(false);
 
@@ -386,6 +389,7 @@ export function FormCard({
 
       inFlightRef.current = true;
       setSubmitting(true);
+      setSubmitError(null);
 
       const qualified = computeQualified(
         data.certificationSought,
@@ -393,7 +397,7 @@ export function FormCard({
       );
 
       try {
-        await submit({
+        const res = await submit({
           firstName: data.firstName.trim(),
           lastName: data.lastName.trim(),
           email: data.email.trim(),
@@ -421,6 +425,12 @@ export function FormCard({
               : "/"),
         });
 
+        // A 2xx with a body that is not {ok:true} is still a dropped lead.
+        // Only a confirmed success fires conversions and shows the thank-you card.
+        if (res?.ok !== true) {
+          throw new Error("Submission not confirmed by server.");
+        }
+
         fireTracking(
           qualified,
           data.certificationSought,
@@ -434,23 +444,10 @@ export function FormCard({
           err
         );
 
-        // Preserve existing behavior:
-        // show thank-you even if API reports an error.
-        fireTracking(
-          qualified,
-          data.certificationSought,
-          data.estimatedBudget
-        );
-
-        setSubmitted(true);
-
-        throw new Error(
-          `Lead submission failed: ${
-            err instanceof Error
-              ? err.message
-              : "unknown"
-          }`
-        );
+        // The visitor is fine, but the LEAD would be dropped: surface a
+        // retryable error and fire NO tracking so we never bill a phantom
+        // conversion.
+        setSubmitError(SUBMIT_ERROR_MESSAGE);
       } finally {
         setSubmitting(false);
         inFlightRef.current = false;
@@ -459,7 +456,7 @@ export function FormCard({
 
   const onSubmitClick = (): void => {
     handleValidateAndSubmit().catch(() => {
-      // Thank-you state is already displayed.
+      // handleValidateAndSubmit handles its own errors via submitError state.
     });
   };
 
@@ -1063,6 +1060,16 @@ export function FormCard({
             </p>
           )}
         </div>
+
+        {submitError ? (
+          <p
+            role="alert"
+            aria-live="polite"
+            className="lp-field-error"
+          >
+            {submitError}
+          </p>
+        ) : null}
 
         {/* Submit */}
         <button
