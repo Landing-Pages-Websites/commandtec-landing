@@ -41,7 +41,7 @@ export const HERO = {
 export const CREDENTIALS = {
   eyebrow: "We hold the certifications we consult on",
   intro:
-    "Our Quality Management System is certified by the International Organization for Standardization (ISO) 9001:2015. We don't just consult on certification. We've achieved it ourselves, so we know what it takes to get you there. We do the same work we prepare you for.",
+    "We don't just consult on certification. We've achieved it ourselves, so we know what it takes to get you there. We do the same work we prepare you for.",
   chips: [
     "ISO 9001:2015",
     "ISO/IEC 27001:2022",
