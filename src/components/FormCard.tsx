@@ -528,7 +528,7 @@ export function FormCard({
       className="overflow-hidden rounded-[10px] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-card-lg"
     >
       {/* Offer bar */}
-      <div className="bg-[var(--color-deep)] px-6 py-4 md:px-7">
+      <div className="bg-[var(--color-deep)] px-6 py-3 md:px-7 md:py-4">
         <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--color-accent-dark)]">
           {offerLabel}
         </p>
@@ -542,7 +542,7 @@ export function FormCard({
         </p>
       </div>
 
-      <div className="space-y-3.5 p-6 md:p-7">
+      <div className="space-y-2 p-5 md:space-y-3.5 md:p-7">
         {/* First / Last */}
         <div className="grid grid-cols-2 gap-3">
           <div>
@@ -967,6 +967,28 @@ export function FormCard({
           )}
         </div>
 
+        {/* Submit */}
+        <button
+          type="button"
+          onClick={onSubmitClick}
+          disabled={
+            submitting || submitted
+          }
+          className="mt-1 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-md bg-[var(--color-primary)] px-4 md:px-6 py-3.5 text-base font-semibold text-white shadow-cta transition-all hover:-translate-y-0.5 hover:bg-[var(--color-primary-hover)] active:translate-y-0 active:bg-[var(--color-primary-active)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 disabled:translate-y-0 disabled:cursor-not-allowed disabled:bg-[var(--color-primary-disabled)]"
+        >
+          {submitting
+            ? "Submitting…"
+            : submitLabel}
+
+          {!submitting && (
+            <Icon
+              name="arrow"
+              className="h-4 w-4"
+              strokeWidth={2.4}
+            />
+          )}
+        </button>
+
         {/* SMS CONSENT */}
         <div
           className={`rounded-md border p-4 ${
@@ -1070,28 +1092,6 @@ export function FormCard({
             {submitError}
           </p>
         ) : null}
-
-        {/* Submit */}
-        <button
-          type="button"
-          onClick={onSubmitClick}
-          disabled={
-            submitting || submitted
-          }
-          className="mt-1 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-md bg-[var(--color-primary)] px-6 py-3.5 text-base font-semibold text-white shadow-cta transition-all hover:-translate-y-0.5 hover:bg-[var(--color-primary-hover)] active:translate-y-0 active:bg-[var(--color-primary-active)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 disabled:translate-y-0 disabled:cursor-not-allowed disabled:bg-[var(--color-primary-disabled)]"
-        >
-          {submitting
-            ? "Submitting…"
-            : submitLabel}
-
-          {!submitting && (
-            <Icon
-              name="arrow"
-              className="h-4 w-4"
-              strokeWidth={2.4}
-            />
-          )}
-        </button>
 
         <p className="text-center text-xs leading-relaxed text-[var(--color-muted)]">
           Free consultation for first-time
