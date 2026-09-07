@@ -24,8 +24,8 @@ export const CURRENT_YEAR = new Date().getFullYear();
 // ─── Hero ───────────────────────────────────────────────────────────────────
 export const HERO = {
   eyebrow: "ISO & CMMI certification consulting",
-  h1Lead: "ISO and CMMI certification,",
-  h1Accent: "run end to end.",
+  h1Lead: "ISO & CMMI Consultants for",
+  h1Accent: "Government Contractors",
   subhead:
     "Need a certification to meet contract requirements? We take it from start to finish: documentation, processes, team training, and audit or appraisal coordination. U.S.-based practitioners, cradle to grave.",
   proofLine: "20 years · 260+ commercial clients · never lost a client",

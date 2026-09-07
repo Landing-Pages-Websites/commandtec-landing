@@ -41,6 +41,9 @@ export function Hero(): React.ReactElement {
               {HERO.h1Lead}{" "}
               <span className="text-[var(--color-accent-dark)]">{HERO.h1Accent}</span>
             </h1>
+            <p className="max-w-xl text-base leading-relaxed text-white/85 md:text-[1.0625rem]">
+              US-based practitioners. 260+ commercial clients. From gap analysis to audit or appraisal coordination.
+            </p>
           </Reveal>
         </div>
 
