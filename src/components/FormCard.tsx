@@ -171,6 +171,23 @@ function computeQualified(
   return false;
 }
 
+// Concise reason for each disqualification branch; undefined when qualified.
+function computeDisqualificationReason(
+  cert: string,
+  budget: string
+): string | undefined {
+  if (cert === NOT_SURE) return undefined;
+  if (budget === BUDGET_LOW) return "Estimated budget under $15,000";
+  if (cert === "ISO") return undefined;
+  if (cert === "CMMI") {
+    return budget === BUDGET_HIGH
+      ? undefined
+      : "CMMI budget below $28,000";
+  }
+
+  return "Qualification criteria not met";
+}
+
 function formatPhone(value: string): string {
   const digits = value.replace(/\D/g, "").slice(0, 10);
 
@@ -396,6 +413,12 @@ export function FormCard({
         data.estimatedBudget
       );
 
+      const disqualificationReason =
+        computeDisqualificationReason(
+          data.certificationSought,
+          data.estimatedBudget
+        );
+
       try {
         const res = await submit({
           firstName: data.firstName.trim(),
@@ -417,6 +440,10 @@ export function FormCard({
           smsConsent: data.smsConsent,
 
           qualified,
+
+          disqualification_reason: qualified
+            ? undefined
+            : disqualificationReason,
 
           route_slug:
             routeSlug ||
