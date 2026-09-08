@@ -27,7 +27,7 @@ export function Hero(): React.ReactElement {
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/50 via-transparent to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-start gap-x-12 gap-y-6 px-5 md:px-8 lg:grid-cols-12">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-start gap-x-12 gap-y-6 px-5 md:px-8 lg:grid-cols-12 lg:grid-rows-[auto_1fr]">
         {/* Top-left: eyebrow + H1 */}
         <div className="lg:col-span-7">
           <Reveal className="space-y-4">
