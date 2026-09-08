@@ -739,6 +739,8 @@ export function FormCard({
             inputMode="numeric"
             autoComplete="tel"
             placeholder="Phone (10 digits)"
+            pattern="\(\d{3}\) \d{3}-\d{4}"
+            title="Please enter a valid 10-digit phone number"
             value={data.phone}
             onChange={(event) =>
               update(
