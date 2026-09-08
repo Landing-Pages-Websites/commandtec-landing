@@ -46,12 +46,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }): React.ReactElement {
-  // dataLayer is initialised ahead of the config assignment.
+  // GTM is loaded by the MEGA optimizer via gtmId in MEGA_TAG_CONFIG — no manual
+  // loader. dataLayer is primed ahead of the config assignment.
   const megaTagConfig = `window.dataLayer=window.dataLayer||[];window.MEGA_TAG_CONFIG={siteKey:"${SITE_KEY}",siteId:"${SITE_ID}",gtmId:"${GTM_ID}"};window.API_ENDPOINT="https://optimizer.gomega.ai";window.TRACKING_API_ENDPOINT="https://events-api.gomega.ai";`;
-
-  // GTM head loader — the injected tag is tagged id="mega-gtm" so the MEGA
-  // optimizer's `!getElementById("mega-gtm")` guard sees it and never double-loads.
-  const gtmLoader = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.id='mega-gtm';j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`;
 
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
@@ -61,7 +58,6 @@ export default function RootLayout({
           id="mega-tag-config"
           dangerouslySetInnerHTML={{ __html: megaTagConfig }}
         />
-        <script id="mega-gtm" dangerouslySetInnerHTML={{ __html: gtmLoader }} />
         <script
           id="optimizer-script"
           src="https://cdn.gomega.ai/scripts/optimizer.min.js"
@@ -70,16 +66,6 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[var(--color-bg)] text-[var(--color-text)] antialiased">
-        {/* GTM noscript — first child of body */}
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-            title="gtm"
-          />
-        </noscript>
         {children}
         {/* CallTrackingMetrics — universal Mega account (never remove) */}
         <Script src="https://572388.tctm.co/t.js" strategy="afterInteractive" />
