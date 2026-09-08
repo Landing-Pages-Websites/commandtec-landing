@@ -487,11 +487,10 @@ export function FormCard({
     });
   };
 
-  const handleNativeSubmit = (
+  const preventNativeSubmit = (
     event: React.FormEvent
   ): void => {
     event.preventDefault();
-    onSubmitClick();
   };
 
   if (submitted) {
@@ -550,7 +549,7 @@ export function FormCard({
 
   return (
     <form
-      onSubmit={handleNativeSubmit}
+      onSubmit={preventNativeSubmit}
       noValidate
       aria-label="Request a free ISO or CMMI consultation"
       className="overflow-hidden rounded-[10px] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-card-lg"
@@ -1002,7 +1001,8 @@ export function FormCard({
 
         {/* Submit */}
         <button
-          type="submit"
+          type="button"
+          onClick={onSubmitClick}
           disabled={
             submitting || submitted
           }
