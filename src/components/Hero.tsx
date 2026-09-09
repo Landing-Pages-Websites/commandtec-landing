@@ -10,7 +10,7 @@ export function Hero(): React.ReactElement {
   return (
     <section
       id="hero"
-      className="relative isolate overflow-hidden bg-[var(--color-ink)] pb-14 pt-24 md:pb-20 md:pt-32"
+      className="relative isolate overflow-hidden bg-[var(--color-ink)] pb-14 pt-20 md:pb-20 md:pt-32"
     >
       {/* Background imagery + scrim — bright daylit operations room, kept clearly
           visible on the right while a left-anchored gradient protects the H1. */}
@@ -27,7 +27,7 @@ export function Hero(): React.ReactElement {
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/50 via-transparent to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-start gap-x-12 gap-y-6 px-5 md:px-8 lg:grid-cols-12 lg:grid-rows-[auto_1fr]">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-start gap-x-12 gap-y-4 px-5 md:gap-y-6 md:px-8 lg:grid-cols-12 lg:grid-rows-[auto_1fr]">
         {/* Top-left: eyebrow + H1 */}
         <div className="lg:col-span-7">
           <Reveal className="space-y-4">
@@ -42,7 +42,7 @@ export function Hero(): React.ReactElement {
               <span className="text-[var(--color-accent-dark)]">{HERO.h1Accent}</span>
             </h1>
             <p className="max-w-xl text-base leading-relaxed text-white/85 md:text-[1.0625rem]">
-              US-based practitioners. 260+ commercial clients. From gap analysis to audit or appraisal coordination.
+              ISO consulting for manufacturing and businesses across industries. CMMI appraisal preparation. U.S.-based practitioners.
             </p>
           </Reveal>
         </div>

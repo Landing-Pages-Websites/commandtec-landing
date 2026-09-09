@@ -59,11 +59,7 @@ export function Contact(): React.ReactElement {
 
         <div className="lg:col-span-6">
           <Reveal delay={120}>
-            <FormCard
-              idPrefix="contact"
-              heading="Start your certification"
-              subheading="Tell us which standard your opportunity requires and we'll scope it — at no cost."
-            />
+            <FormCard idPrefix="contact" />
           </Reveal>
         </div>
       </div>

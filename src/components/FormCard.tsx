@@ -43,8 +43,7 @@ type FieldKey =
   | "email"
   | "phone"
   | "certificationSought"
-  | "estimatedBudget"
-  | "smsConsent";
+  | "estimatedBudget";
 
 interface FormState {
   firstName: string;
@@ -53,7 +52,6 @@ interface FormState {
   phone: string;
   certificationSought: string;
   estimatedBudget: string;
-  smsConsent: boolean;
 }
 
 const INITIAL: FormState = {
@@ -63,7 +61,6 @@ const INITIAL: FormState = {
   phone: "",
   certificationSought: "",
   estimatedBudget: "",
-  smsConsent: false,
 };
 
 type FieldErrors = Partial<Record<FieldKey, string>>;
@@ -74,7 +71,6 @@ const REQUIRED_ORDER: FieldKey[] = [
   "email",
   "certificationSought",
   "estimatedBudget",
-  "smsConsent",
 ];
 
 function validateField(
@@ -129,11 +125,6 @@ function validateField(
       return value
         ? undefined
         : "Please select an estimated budget.";
-
-    case "smsConsent":
-      return value === true
-        ? undefined
-        : "Please check the box to consent to receive SMS/text messages.";
   }
 }
 
@@ -220,8 +211,8 @@ interface FormCardProps {
 export function FormCard({
   idPrefix = "hero",
   offerLabel = "Free consultation for first-time clients",
-  heading = "Tell us your required standard and deadline.",
-  subheading = "We'll scope the consulting work and discuss timing in your free consultation.",
+  heading = "Request your free consultation",
+  subheading = "Tell us your certification goal and budget.",
   submitLabel = CTA.primary,
   routeSlug,
   thankYouBody = "Thank you. A CommandTec practitioner will reach out to schedule your free consultation, identify the standard your opportunity requires, and scope the engagement — with no obligation.",
@@ -324,7 +315,6 @@ export function FormCard({
       qualified,
       certification_sought: cert,
       estimated_budget: budget,
-      sms_consent: true,
     };
 
     window.MegaTag?.trackEvent?.(
@@ -396,7 +386,6 @@ export function FormCard({
           phone: true,
           certificationSought: true,
           estimatedBudget: true,
-          smsConsent: true,
         });
 
         focusFirstBad(allErrors);
@@ -435,9 +424,6 @@ export function FormCard({
 
           estimatedBudget:
             data.estimatedBudget,
-
-          // SMS CONSENT.
-          smsConsent: data.smsConsent,
 
           qualified,
 
@@ -1020,101 +1006,6 @@ export function FormCard({
             />
           )}
         </button>
-
-        {/* SMS CONSENT */}
-        <div
-          className={`rounded-md border p-4 ${
-            showErr("smsConsent")
-              ? "border-red-500 bg-red-50"
-              : "border-[var(--color-border)] bg-[var(--color-bg)]"
-          }`}
-        >
-          <div className="flex items-start gap-3">
-            <input
-              name="smsConsent"
-              required
-              ref={(element) => {
-                fieldRefs.current.smsConsent =
-                  element;
-              }}
-              id={`${idPrefix}-smsConsent`}
-              type="checkbox"
-              checked={data.smsConsent}
-              onChange={(event) => {
-                update(
-                  "smsConsent",
-                  event.target.checked
-                );
-
-                markTouched(
-                  "smsConsent",
-                  event.target.checked
-                );
-              }}
-              onBlur={() =>
-                markTouched(
-                  "smsConsent",
-                  data.smsConsent
-                )
-              }
-              className="mt-1 h-4 w-4 shrink-0 cursor-pointer rounded border-[var(--color-border)] text-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-accent)]"
-              aria-invalid={
-                showErr("smsConsent") ||
-                undefined
-              }
-              aria-describedby={`${idPrefix}-smsConsent-description${
-                showErr("smsConsent")
-                  ? ` ${errId("smsConsent")}`
-                  : ""
-              }`}
-              disabled={submitting}
-            />
-
-            <label
-              htmlFor={`${idPrefix}-smsConsent`}
-              id={`${idPrefix}-smsConsent-description`}
-              className="cursor-pointer text-xs leading-relaxed text-[var(--color-muted)]"
-            >
-              I agree to receive SMS/text messages
-              from CommandTec regarding my inquiry,
-              consultation scheduling, reminders, and
-              service-related updates. Message frequency
-              varies. Message and data rates may apply.
-              Reply <strong>STOP</strong> to opt out or{" "}
-              <strong>HELP</strong> for help. Consent is
-              not a condition of purchase. View our{" "}
-              <a
-                href="/privacy-policy/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[var(--color-primary)] underline underline-offset-2 hover:text-[var(--color-primary-hover)]"
-              >
-                Privacy Policy
-              </a>{" "}
-              and{" "}
-              <a
-                href="/terms-and-conditions/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[var(--color-primary)] underline underline-offset-2 hover:text-[var(--color-primary-hover)]"
-              >
-                Terms &amp; Conditions
-              </a>
-              .
-            </label>
-          </div>
-
-          {showErr("smsConsent") && (
-            <p
-              id={errId("smsConsent")}
-              role="alert"
-              aria-live="polite"
-              className="lp-field-error mt-2"
-            >
-              {errors.smsConsent}
-            </p>
-          )}
-        </div>
 
         {submitError ? (
           <p

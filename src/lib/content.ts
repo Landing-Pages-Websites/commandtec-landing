@@ -24,10 +24,10 @@ export const CURRENT_YEAR = new Date().getFullYear();
 // ─── Hero ───────────────────────────────────────────────────────────────────
 export const HERO = {
   eyebrow: "ISO & CMMI certification consulting",
-  h1Lead: "ISO & CMMI Consultants for",
-  h1Accent: "Government Contractors",
+  h1Lead: "ISO & CMMI Certification",
+  h1Accent: "Consulting",
   subhead:
-    "Need a certification to meet contract requirements? We take it from start to finish: documentation, processes, team training, and audit or appraisal coordination. U.S.-based practitioners, cradle to grave.",
+    "From gap analysis and documentation to staff training and independent audit or appraisal coordination, CommandTec manages your consulting engagement from start to finish.",
   proofLine: "20 years · 260+ commercial clients · never lost a client",
   chips: [
     "US-based practitioners",
@@ -60,23 +60,23 @@ export const CREDENTIALS = {
 // ─── Why certification (Problem + Agitate) ────────────────────────────────────
 export const WHY_CERT = {
   eyebrow: "Why the standard is on the table",
-  headline: "The certification is the price of admission to the contract.",
-  lead: "ISO and CMMI certifications are often required to compete for point-based contracts — IDIQs, MATOCs, and BPAs — and to satisfy a prime's flow-down requirements. Without the credential, you can't bid, or you bid and score short.",
+  headline: "Meet customer requirements. Prepare for your next audit.",
+  lead: "Manufacturers and businesses across industries need ISO certification to meet customer and supplier requirements. Organizations also pursue CMMI to improve processes and meet contract requirements. Government contractors are one of the audiences CommandTec supports.",
   points: [
     {
       icon: "clock",
-      title: "The clock is the standard's, not a salesperson's",
-      body: "An ISO system needs months of operating evidence; a CMMI appraisal must be booked with a lead appraiser in advance. Your bid date is closer than the standard allows.",
+      title: "Plan around your deadline",
+      body: "We scope the documentation, operating evidence, training, and audit or appraisal coordination around your customer, bid, or recertification deadline.",
     },
     {
       icon: "alert",
-      title: "The DIY path is where bids get missed",
-      body: "Teams try to write the documentation between day jobs. Months disappear, an audit fails on a missed gap, or the bid window closes before the certificate arrives.",
+      title: "Keep your team focused on the business",
+      body: "Our practitioners build the documentation and processes with your team, identify gaps, and prepare you for the independent audit or appraisal.",
     },
     {
       icon: "target",
-      title: "Certification makes you competitive, not just compliant",
-      body: "We ready organizations to do business with the government and compete for IDIQs and multiple-award vehicles. The certificate is the entry ticket; a real system keeps you winning re-competes.",
+      title: "Build a system your business can use",
+      body: "The work supports your day-to-day operations as well as certification readiness, whether you serve commercial customers, government customers, or both.",
     },
   ],
 };
@@ -343,12 +343,12 @@ export const OFFERS = {
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
 export const FAQ = [
   {
-    q: "Which standard does my contract require?",
-    a: "Usually the solicitation or the prime's flow-down clause names it. If it doesn't, that's what the free consultation is for — we read the requirement with you and identify the standard and level your opportunity calls for.",
+    q: "Which standard does my business need?",
+    a: "The right standard depends on your business, customer requirements, and certification goals. In your free consultation, we review those requirements and identify the standard and scope of consulting support.",
   },
   {
     q: "How long does certification take?",
-    a: "It depends on the standard and your size. ISO systems need operating evidence before an audit; CMMI appraisals must be scheduled in advance. In the consultation we map a realistic schedule against your bid or recertification date.",
+    a: "It depends on the standard, your organization, and how much preparation is already complete. We map a realistic schedule against your customer, bid, or recertification deadline during the consultation.",
   },
   {
     q: "What does it cost?",
@@ -372,7 +372,7 @@ export const FAQ = [
 export const CONTACT = {
   eyebrow: "Start your certification",
   headline: "Get the standard handled — end to end.",
-  lead: "Tell us which certification your opportunity requires and we'll take it from there. 20 years · 260+ clients · never lost a client. Your first consultation is free.",
+  lead: "Tell us your certification goal and we will scope the consulting support your business needs. Your first consultation is free.",
 };
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
