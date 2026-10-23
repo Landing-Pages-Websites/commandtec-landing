@@ -23,6 +23,7 @@ export default function Page(): React.ReactElement {
     siteKey: TRACKING.siteKey,
     siteId: TRACKING.siteId,
     gtmId: TRACKING.gtmId,
+    gaId: TRACKING.gaId,
   });
 
   return (
