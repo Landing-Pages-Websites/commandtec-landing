@@ -48,7 +48,7 @@ export default function RootLayout({
 }): React.ReactElement {
   // GTM is loaded by the MEGA optimizer via gtmId in MEGA_TAG_CONFIG — no manual
   // loader. dataLayer is primed ahead of the config assignment.
-  const megaTagConfig = `window.dataLayer=window.dataLayer||[];window.MEGA_TAG_CONFIG={siteKey:"${SITE_KEY}",siteId:"${SITE_ID}",gtmId:"${GTM_ID}"};window.API_ENDPOINT="https://optimizer.gomega.ai";window.TRACKING_API_ENDPOINT="https://events-api.gomega.ai";`;
+  const megaTagConfig = `window.dataLayer=window.dataLayer||[];window.MEGA_TAG_CONFIG={siteKey:"${SITE_KEY}",siteId:"${SITE_ID}",gtmId:"${GTM_ID}",gaId:"AW-18362511703"};window.API_ENDPOINT="https://optimizer.gomega.ai";window.TRACKING_API_ENDPOINT="https://events-api.gomega.ai";`;
 
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>

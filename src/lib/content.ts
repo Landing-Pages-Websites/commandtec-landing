@@ -397,6 +397,7 @@ export const TRACKING = {
   siteKey: "5wy9d5dgo29fm8ix",
   siteId: "1cbb187b-20ca-495c-85fe-f30bdc5e9abe",
   gtmId: "GTM-WSCKDRKJ",
+  gaId: "AW-18362511703",
 };
 
 // Mega submission API expects snake_case keys: customer_id, site_id, source_provider
