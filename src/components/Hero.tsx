@@ -42,7 +42,7 @@ export function Hero(): React.ReactElement {
               <span className="text-[var(--color-accent-dark)]">{HERO.h1Accent}</span>
             </h1>
             <p className="max-w-xl text-base leading-relaxed text-white/85 md:text-[1.0625rem]">
-              ISO consulting for manufacturing and businesses across industries. CMMI appraisal preparation. U.S.-based practitioners.
+              ISO certification consulting across industries. CMMI consulting and appraisal support for all domains, levels 2-5. U.S.-based practitioners.
             </p>
           </Reveal>
         </div>

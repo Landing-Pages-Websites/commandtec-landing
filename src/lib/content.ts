@@ -141,7 +141,7 @@ export const ISO = {
 
 // ─── CMMI block ───────────────────────────────────────────────────────────────
 export const CMMI = {
-  eyebrow: "CMMI appraisal consulting",
+  eyebrow: "CMMI certification & appraisal consulting",
   headline: "CMMI maturity across every domain, built as a real process system — then appraised.",
   lead: "An appraiser measures; we build. CommandTec prepares organizations for CMMI maturity across every domain and level — building the process system, proving it out with your teams, then coordinating the formal appraisal with a certified lead appraiser. We're all practitioners.",
   standards: [
