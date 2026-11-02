@@ -146,6 +146,12 @@
       "source_url": "https://commandtec.net/services/",
       "verified": true,
       "note": "Card copy authorized by atlas-task:4f565e18-6674-4f3e-8cb7-99c786f4f516 (Nov 2, 2026 task note). Live CCP re-read Nov 2, 2026 lists AS9100 certification consulting in offering.services and no longer bans AS9100; the 'No AS9100' banned_claims entry below predates that change."
+    },
+    {
+      "claim": "QA rework r2 for the AS9100D card in #iso-certification: the final (odd) standards card spans both desktop grid columns, and the card description separator is a comma: 'The aerospace and defense quality standard built on ISO 9001, we take your QMS from documentation to a clean registrar audit.'",
+      "source_url": "https://info.commandtec.net/",
+      "verified": true,
+      "note": "Authorized by atlas-task:4f565e18-6674-4f3e-8cb7-99c786f4f516 independent QA attempt1 (95/100 HARD_FAIL) comments 80b699f0-0605-4bc5-aa9f-36d152a8765f and 3d7148bc-3ebf-4401-87e3-13cb966067d2, with controller scope amendment eac17c30-01c5-4f64-b8db-1ae5705edb8f (Nov 2, 2026). Supersedes only the previous no-placement-change restriction for this card and the supplied em dash in its description; title, label, bullets, claims, and all other entries are unchanged."
     }
   ],
   "imagery": [

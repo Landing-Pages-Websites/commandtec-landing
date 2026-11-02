@@ -27,6 +27,8 @@ interface StandardsBlockProps {
   extra: ExtraCard;
   imageSrc: string;
   imageAlt: string;
+  /** Span the final standards card across both desktop columns (odd card counts). */
+  spanLastCard?: boolean;
 }
 
 // Shared structure for the ISO and CMMI ad-group landing targets — rendered
@@ -40,6 +42,7 @@ export function StandardsBlock({
   extra,
   imageSrc,
   imageAlt,
+  spanLastCard = false,
 }: StandardsBlockProps): React.ReactElement {
   return (
     <section id={id} className="bg-[var(--color-bg)] py-20 md:py-28">
@@ -74,7 +77,11 @@ export function StandardsBlock({
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {standards.map((s, i) => (
-            <Reveal key={s.code} delay={i * 60}>
+            <Reveal
+              key={s.code}
+              delay={i * 60}
+              className={spanLastCard && i === standards.length - 1 ? "md:col-span-2" : undefined}
+            >
               <article className="group relative h-full rounded-[10px] border border-[var(--color-border)] bg-[var(--color-surface)] p-7 transition-all duration-150 hover:-translate-y-0.5 hover:border-[var(--color-primary)] hover:shadow-card">
                 <span
                   aria-hidden="true"

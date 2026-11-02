@@ -12,6 +12,7 @@ export function IsoCertification(): React.ReactElement {
       extra={ISO.extra}
       imageSrc="/images/audit-readiness.jpg"
       imageAlt="A consultant reviewing a printed procedures document beside an open binder and a laptop in a bright conference room, preparing for a certification audit."
+      spanLastCard
     />
   );
 }
