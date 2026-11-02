@@ -135,7 +135,7 @@ export const ISO = {
       code: "AS9100D",
       name: "AEROSPACE QUALITY MANAGEMENT SYSTEMS",
       summary:
-        "The aerospace and defense quality standard built on ISO 9001 — we take your QMS from documentation to a clean registrar audit.",
+        "The aerospace and defense quality standard built on ISO 9001, we take your QMS from documentation to a clean registrar audit.",
       bullets: [
         "Aerospace requirements layered onto your ISO 9001 system",
         "Configuration, risk, and product-safety processes documented",
