@@ -6,7 +6,6 @@ import {
   CTA,
   PHONE,
   CERTIFICATION_OPTIONS,
-  BUDGET_OPTIONS,
 } from "@/lib/content";
 import { Icon } from "@/components/icons";
 
@@ -31,9 +30,13 @@ const EMAIL_RE =
 const NANP_RE =
   /^[2-9](?!11)\d{2}[2-9](?!11)\d{2}\d{4}$/;
 
-const NOT_SURE = "Not sure yet";
-const BUDGET_LOW = "Under $15,000";
-const BUDGET_HIGH = "$28,000 or more";
+// Every offered certification qualifies; anything else is unrecognized.
+const QUALIFYING_CERTIFICATIONS: readonly string[] = [
+  "ISO",
+  "CMMI",
+  "Not sure yet",
+];
+const UNRECOGNIZED_REASON = "Qualification criteria not met";
 
 const SUBMIT_ERROR_MESSAGE = `Something went wrong sending your request. Please try again, or call us at ${PHONE}.`;
 
@@ -42,8 +45,7 @@ type FieldKey =
   | "lastName"
   | "email"
   | "phone"
-  | "certificationSought"
-  | "estimatedBudget";
+  | "certificationSought";
 
 interface FormState {
   firstName: string;
@@ -51,7 +53,6 @@ interface FormState {
   email: string;
   phone: string;
   certificationSought: string;
-  estimatedBudget: string;
 }
 
 const INITIAL: FormState = {
@@ -60,7 +61,6 @@ const INITIAL: FormState = {
   email: "",
   phone: "",
   certificationSought: "",
-  estimatedBudget: "",
 };
 
 type FieldErrors = Partial<Record<FieldKey, string>>;
@@ -70,7 +70,6 @@ const REQUIRED_ORDER: FieldKey[] = [
   "lastName",
   "email",
   "certificationSought",
-  "estimatedBudget",
 ];
 
 function validateField(
@@ -120,11 +119,6 @@ function validateField(
       return value
         ? undefined
         : "Please select a certification.";
-
-    case "estimatedBudget":
-      return value
-        ? undefined
-        : "Please select an estimated budget.";
   }
 }
 
@@ -150,33 +144,8 @@ function validateAll(data: FormState): FieldErrors {
 }
 
 // Reporting-only qualification — NEVER blocks or alters submit.
-function computeQualified(
-  cert: string,
-  budget: string
-): boolean {
-  if (cert === NOT_SURE) return true;
-  if (budget === BUDGET_LOW) return false;
-  if (cert === "ISO") return true;
-  if (cert === "CMMI") return budget === BUDGET_HIGH;
-
-  return false;
-}
-
-// Concise reason for each disqualification branch; undefined when qualified.
-function computeDisqualificationReason(
-  cert: string,
-  budget: string
-): string | undefined {
-  if (cert === NOT_SURE) return undefined;
-  if (budget === BUDGET_LOW) return "Estimated budget under $15,000";
-  if (cert === "ISO") return undefined;
-  if (cert === "CMMI") {
-    return budget === BUDGET_HIGH
-      ? undefined
-      : "CMMI budget below $28,000";
-  }
-
-  return "Qualification criteria not met";
+function computeQualified(cert: string): boolean {
+  return QUALIFYING_CERTIFICATIONS.includes(cert);
 }
 
 function formatPhone(value: string): string {
@@ -298,8 +267,7 @@ export function FormCard({
 
   const fireTracking = (
     qualified: boolean,
-    cert: string,
-    budget: string
+    cert: string
   ): void => {
     if (typeof window === "undefined") {
       return;
@@ -314,7 +282,6 @@ export function FormCard({
       form_route: route,
       qualified,
       certification_sought: cert,
-      estimated_budget: budget,
     };
 
     window.MegaTag?.trackEvent?.(
@@ -385,7 +352,6 @@ export function FormCard({
           email: true,
           phone: true,
           certificationSought: true,
-          estimatedBudget: true,
         });
 
         focusFirstBad(allErrors);
@@ -398,15 +364,8 @@ export function FormCard({
       setSubmitError(null);
 
       const qualified = computeQualified(
-        data.certificationSought,
-        data.estimatedBudget
+        data.certificationSought
       );
-
-      const disqualificationReason =
-        computeDisqualificationReason(
-          data.certificationSought,
-          data.estimatedBudget
-        );
 
       try {
         const res = await submit({
@@ -422,14 +381,11 @@ export function FormCard({
           certificationSought:
             data.certificationSought,
 
-          estimatedBudget:
-            data.estimatedBudget,
-
           qualified,
 
           disqualification_reason: qualified
             ? undefined
-            : disqualificationReason,
+            : UNRECOGNIZED_REASON,
 
           route_slug:
             routeSlug ||
@@ -446,8 +402,7 @@ export function FormCard({
 
         fireTracking(
           qualified,
-          data.certificationSought,
-          data.estimatedBudget
+          data.certificationSought
         );
 
         setSubmitted(true);
@@ -886,101 +841,6 @@ export function FormCard({
               className="lp-field-error"
             >
               {errors.certificationSought}
-            </p>
-          )}
-        </div>
-
-        {/* Estimated budget */}
-        <div>
-          <label
-            htmlFor={`${idPrefix}-estimatedBudget`}
-            className="sr-only"
-          >
-            What is your estimated budget?
-          </label>
-
-          <div className="relative">
-            <select
-              name="estimatedBudget"
-              required
-              ref={(element) => {
-                fieldRefs.current.estimatedBudget =
-                  element;
-              }}
-              id={`${idPrefix}-estimatedBudget`}
-              value={data.estimatedBudget}
-              onChange={(event) => {
-                update(
-                  "estimatedBudget",
-                  event.target.value
-                );
-
-                markTouched(
-                  "estimatedBudget",
-                  event.target.value
-                );
-              }}
-              onBlur={(event) =>
-                markTouched(
-                  "estimatedBudget",
-                  event.target.value
-                )
-              }
-              className={`${inputCls(
-                "estimatedBudget"
-              )} appearance-none pr-9 ${
-                data.estimatedBudget
-                  ? ""
-                  : "text-[var(--color-muted)]"
-              }`}
-              aria-invalid={
-                showErr(
-                  "estimatedBudget"
-                ) || undefined
-              }
-              aria-describedby={
-                showErr(
-                  "estimatedBudget"
-                )
-                  ? errId(
-                      "estimatedBudget"
-                    )
-                  : undefined
-              }
-              disabled={submitting}
-            >
-              <option value="">
-                What is your estimated budget?
-              </option>
-
-              {BUDGET_OPTIONS.map(
-                (option) => (
-                  <option
-                    key={option}
-                    value={option}
-                    className="text-[var(--color-text)]"
-                  >
-                    {option}
-                  </option>
-                )
-              )}
-            </select>
-
-            <ChevronDown />
-          </div>
-
-          {showErr(
-            "estimatedBudget"
-          ) && (
-            <p
-              id={errId(
-                "estimatedBudget"
-              )}
-              role="alert"
-              aria-live="polite"
-              className="lp-field-error"
-            >
-              {errors.estimatedBudget}
             </p>
           )}
         </div>
