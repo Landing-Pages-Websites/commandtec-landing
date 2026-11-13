@@ -397,11 +397,6 @@ export const FOOTER = {
 
 // ─── Form select options (wired exactly to the FormCard contract) ─────────────
 export const CERTIFICATION_OPTIONS = ["ISO", "CMMI", "Not sure yet"];
-export const BUDGET_OPTIONS = [
-  "Under $15,000",
-  "$15,000 - $28,000",
-  "$28,000 or more",
-];
 
 // ─── Mega tracking — real CommandTec IDs. NO Meta Pixel (customer declined). ──
 export const TRACKING = {
