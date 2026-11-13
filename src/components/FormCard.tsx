@@ -53,6 +53,12 @@ const NATIVE_ENTER_TAGS: readonly string[] = [
   "A",
 ];
 
+// The #contact instance sits beside a taller copy + photo column on desktop;
+// it alone gets roomier vertical rhythm so its fields fill that row.
+const CONTACT_ID_PREFIX = "contact";
+const BODY_CLS = "space-y-2 p-5 md:space-y-3.5 md:p-7";
+const CONTACT_BODY_CLS = `${BODY_CLS} lg:space-y-8 lg:py-14`;
+
 const SUBMIT_ERROR_MESSAGE = `Something went wrong sending your request. Please try again, or call us at ${PHONE}.`;
 
 const INITIAL: LeadFields = {
@@ -428,7 +434,13 @@ export function FormCard({
         </p>
       </div>
 
-      <div className="space-y-2 p-5 md:space-y-3.5 md:p-7">
+      <div
+        className={
+          idPrefix === CONTACT_ID_PREFIX
+            ? CONTACT_BODY_CLS
+            : BODY_CLS
+        }
+      >
         {/* First / Last */}
         <div className="grid grid-cols-2 gap-3">
           <div>
