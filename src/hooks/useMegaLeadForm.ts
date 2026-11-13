@@ -2,6 +2,14 @@
 
 import { useEffect, useCallback, useRef } from "react";
 import { FORM } from "@/lib/content";
+import {
+  EMAIL_ERROR,
+  PHONE_ERROR,
+  isValidEmail,
+  isValidPhone,
+  normalizeEmail,
+  phoneDigits,
+} from "@/lib/fields";
 
 const CONFIG = {
   CUSTOMER_ID: FORM.customerId,
@@ -146,22 +154,22 @@ export const useMegaLeadForm = (): UseMegaLeadFormReturn => {
 
   const submit = useCallback(
     async (formData: Record<string, unknown>): Promise<SubmissionResponse> => {
-      // Defense-in-depth validation. NANP_RE mirrors the UI rule in
-      // FormCard.tsx: area code & exchange each start 2-9 and may not be N11.
-      const NANP_RE = /^[2-9](?!11)\d{2}[2-9](?!11)\d{2}\d{4}$/;
+      // Defense-in-depth validation with the same lib/fields rules as the UI.
+      // Phone is optional: only a blank phone skips the check, and a nonblank
+      // value is validated before it is reduced to its 10 digits.
       if (formData.phone) {
-        const digits = String(formData.phone).replace(/\D/g, "");
-        if (digits.length !== 10) {
-          throw new Error("Phone must be exactly 10 digits");
+        if (!isValidPhone(String(formData.phone))) {
+          throw new Error(PHONE_ERROR);
         }
-        if (!NANP_RE.test(digits)) {
-          throw new Error("Phone must be a valid 10-digit US number");
-        }
-        formData.phone = digits;
+        formData.phone = phoneDigits(String(formData.phone));
       }
       if (!formData.firstName || !formData.email) {
         throw new Error("firstName and email are required");
       }
+      if (!isValidEmail(formData.email)) {
+        throw new Error(EMAIL_ERROR);
+      }
+      formData.email = normalizeEmail(String(formData.email));
 
       const attribution = initAttribution();
 

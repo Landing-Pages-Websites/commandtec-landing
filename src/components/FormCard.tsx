@@ -8,6 +8,18 @@ import {
   CERTIFICATION_OPTIONS,
 } from "@/lib/content";
 import { Icon } from "@/components/icons";
+import {
+  EMAIL_ERROR,
+  EMAIL_MAX_LENGTH,
+  EMAIL_PATTERN,
+  PHONE_ERROR,
+  PHONE_PATTERN,
+  formatPhone,
+  isValidEmail,
+  isValidPhone,
+  normalizeEmail,
+  phoneDigits,
+} from "@/lib/fields";
 
 declare global {
   interface Window {
@@ -23,20 +35,19 @@ declare global {
 
 // ─── Validation ──────────────────────────────────────────────
 
-const EMAIL_RE =
-  /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
+// Email and phone rules live only in lib/fields (canonical lp-starter file).
+const TEXT_MAX_LENGTH = 200;
+const TEXT_TOO_LONG_ERROR = `Use ${TEXT_MAX_LENGTH} characters or fewer.`;
 
-// NANP: area code & exchange each start 2-9 and may not be an N11.
-const NANP_RE =
-  /^[2-9](?!11)\d{2}[2-9](?!11)\d{2}\d{4}$/;
-
-// Every offered certification qualifies; anything else is unrecognized.
-const QUALIFYING_CERTIFICATIONS: readonly string[] = [
-  "ISO",
-  "CMMI",
-  "Not sure yet",
-];
 const UNRECOGNIZED_REASON = "Qualification criteria not met";
+
+// Enter keeps its native meaning on these elements (activation, picker, newline).
+const NATIVE_ENTER_TAGS: readonly string[] = [
+  "TEXTAREA",
+  "SELECT",
+  "BUTTON",
+  "A",
+];
 
 const SUBMIT_ERROR_MESSAGE = `Something went wrong sending your request. Please try again, or call us at ${PHONE}.`;
 
@@ -65,58 +76,50 @@ const INITIAL: FormState = {
 
 type FieldErrors = Partial<Record<FieldKey, string>>;
 
-const REQUIRED_ORDER: FieldKey[] = [
+// DOM order: validation runs on every field and focus goes to the first bad one.
+const FIELD_ORDER: FieldKey[] = [
   "firstName",
   "lastName",
   "email",
+  "phone",
   "certificationSought",
 ];
 
+function validateText(
+  value: string,
+  requiredMessage: string
+): string | undefined {
+  const trimmed = value.trim();
+
+  if (!trimmed) return requiredMessage;
+
+  return trimmed.length > TEXT_MAX_LENGTH
+    ? TEXT_TOO_LONG_ERROR
+    : undefined;
+}
+
 function validateField(
   key: FieldKey,
-  value: string | boolean
+  value: string
 ): string | undefined {
   switch (key) {
     case "firstName":
-      return typeof value === "string" && value.trim()
-        ? undefined
-        : "First name is required.";
+      return validateText(value, "First name is required.");
 
     case "lastName":
-      return typeof value === "string" && value.trim()
-        ? undefined
-        : "Last name is required.";
+      return validateText(value, "Last name is required.");
 
-    case "email": {
-      const v = String(value).trim();
+    case "email":
+      if (!value.trim()) return "Email address is required.";
+      return isValidEmail(value) ? undefined : EMAIL_ERROR;
 
-      if (!v) return "Email address is required.";
-      if (!EMAIL_RE.test(v)) {
-        return "Please enter a valid email address.";
-      }
-
-      return undefined;
-    }
-
-    case "phone": {
-      const digits = String(value).replace(/\D/g, "");
-
-      // PHONE IS OPTIONAL.
-      if (!digits) return undefined;
-
-      if (digits.length !== 10) {
-        return "Please enter a valid 10-digit phone number.";
-      }
-
-      if (!NANP_RE.test(digits)) {
-        return "Please enter a valid US phone number.";
-      }
-
-      return undefined;
-    }
+    case "phone":
+      // PHONE IS OPTIONAL: only a blank value skips validation.
+      if (!value.trim()) return undefined;
+      return isValidPhone(value) ? undefined : PHONE_ERROR;
 
     case "certificationSought":
-      return value
+      return CERTIFICATION_OPTIONS.includes(value)
         ? undefined
         : "Please select a certification.";
   }
@@ -125,7 +128,7 @@ function validateField(
 function validateAll(data: FormState): FieldErrors {
   const errors: FieldErrors = {};
 
-  REQUIRED_ORDER.forEach((key) => {
+  FIELD_ORDER.forEach((key) => {
     const err = validateField(key, data[key]);
 
     if (err) {
@@ -133,38 +136,13 @@ function validateAll(data: FormState): FieldErrors {
     }
   });
 
-  // Phone is optional, but validate it when provided.
-  const phoneError = validateField("phone", data.phone);
-
-  if (phoneError) {
-    errors.phone = phoneError;
-  }
-
   return errors;
 }
 
 // Reporting-only qualification — NEVER blocks or alters submit.
+// Every offered certification qualifies; anything else is unrecognized.
 function computeQualified(cert: string): boolean {
-  return QUALIFYING_CERTIFICATIONS.includes(cert);
-}
-
-function formatPhone(value: string): string {
-  const digits = value.replace(/\D/g, "").slice(0, 10);
-
-  if (!digits) return "";
-
-  if (digits.length <= 3) {
-    return `(${digits}`;
-  }
-
-  if (digits.length <= 6) {
-    return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
-  }
-
-  return `(${digits.slice(0, 3)}) ${digits.slice(
-    3,
-    6
-  )}-${digits.slice(6)}`;
+  return CERTIFICATION_OPTIONS.includes(cert);
 }
 
 interface FormCardProps {
@@ -181,7 +159,7 @@ export function FormCard({
   idPrefix = "hero",
   offerLabel = "Free consultation for first-time clients",
   heading = "Request your free consultation",
-  subheading = "Tell us your certification goal and budget.",
+  subheading = "Tell us your certification goal.",
   submitLabel = CTA.primary,
   routeSlug,
   thankYouBody = "Thank you. A CommandTec practitioner will reach out to schedule your free consultation, identify the standard your opportunity requires, and scope the engagement — with no obligation.",
@@ -205,7 +183,7 @@ export function FormCard({
 
   const update = (
     key: keyof FormState,
-    value: string | boolean
+    value: string
   ): void => {
     setData((current) => ({
       ...current,
@@ -241,7 +219,7 @@ export function FormCard({
 
   const markTouched = (
     key: FieldKey,
-    currentValue: string | boolean
+    currentValue: string
   ): void => {
     setTouched((current) => ({
       ...current,
@@ -265,6 +243,16 @@ export function FormCard({
     });
   };
 
+  // Each destination call is isolated, so one tracker throwing can neither
+  // block the others nor turn a lead the server already accepted into a failure.
+  const runTracker = (send: () => void): void => {
+    try {
+      send();
+    } catch {
+      // Tracker failure is non-fatal after a confirmed lead.
+    }
+  };
+
   const fireTracking = (
     qualified: boolean,
     cert: string
@@ -284,35 +272,31 @@ export function FormCard({
       certification_sought: cert,
     };
 
-    window.MegaTag?.trackEvent?.(
-      "form_submit",
-      payload
+    runTracker(() =>
+      window.MegaTag?.trackEvent?.("form_submit", payload)
     );
 
     window.dataLayer = window.dataLayer || [];
 
-    window.dataLayer.push({
-      event: "form_submit",
-      ...payload,
-    });
+    runTracker(() =>
+      window.dataLayer?.push({ event: "form_submit", ...payload })
+    );
 
     if (qualified) {
-      window.MegaTag?.trackEvent?.(
-        "qualified_lead",
-        payload
+      runTracker(() =>
+        window.MegaTag?.trackEvent?.("qualified_lead", payload)
       );
 
-      window.dataLayer.push({
-        event: "qualified_lead",
-        ...payload,
-      });
+      runTracker(() =>
+        window.dataLayer?.push({ event: "qualified_lead", ...payload })
+      );
     }
   };
 
   const focusFirstBad = (
     allErrors: FieldErrors
   ): void => {
-    const firstBad = REQUIRED_ORDER.find(
+    const firstBad = FIELD_ORDER.find(
       (key) => allErrors[key]
     );
 
@@ -331,107 +315,122 @@ export function FormCard({
     }
   };
 
-  const handleValidateAndSubmit =
-    async (): Promise<void> => {
-      if (
-        inFlightRef.current ||
-        submitting ||
-        submitted
-      ) {
-        return;
+  const buildLead = (
+    qualified: boolean
+  ): Record<string, unknown> => ({
+    firstName: data.firstName.trim(),
+    lastName: data.lastName.trim(),
+    email: normalizeEmail(data.email),
+
+    // PHONE REMAINS OPTIONAL: blank stays "", otherwise the 10 digits.
+    phone: data.phone.trim()
+      ? phoneDigits(data.phone)
+      : "",
+
+    certificationSought:
+      data.certificationSought,
+
+    qualified,
+
+    disqualification_reason: qualified
+      ? undefined
+      : UNRECOGNIZED_REASON,
+
+    route_slug:
+      routeSlug ||
+      (typeof window !== "undefined"
+        ? window.location.pathname
+        : "/"),
+  });
+
+  // Caller has already set inFlightRef. It is reset only on failure: after a
+  // confirmed lead it stays set, so this page view can never POST again.
+  const performSubmit = async (): Promise<void> => {
+    setSubmitting(true);
+    setSubmitError(null);
+
+    const qualified = computeQualified(
+      data.certificationSought
+    );
+
+    try {
+      const res = await submit(buildLead(qualified));
+
+      // A 2xx with a body that is not {ok:true} is still a dropped lead.
+      if (res?.ok !== true) {
+        throw new Error("Submission not confirmed by server.");
       }
+    } catch (err) {
+      console.error("Lead submission failed:", err);
 
-      const allErrors = validateAll(data);
+      // The LEAD would be dropped: surface a retryable error and fire NO
+      // tracking so we never bill a phantom conversion.
+      inFlightRef.current = false;
+      setSubmitError(SUBMIT_ERROR_MESSAGE);
+      return;
+    } finally {
+      setSubmitting(false);
+    }
 
-      if (Object.keys(allErrors).length > 0) {
-        setErrors(allErrors);
+    // Confirmed: commit the thank-you before tracking runs.
+    setSubmitted(true);
+    fireTracking(qualified, data.certificationSought);
+  };
 
-        setTouched({
-          firstName: true,
-          lastName: true,
-          email: true,
-          phone: true,
-          certificationSought: true,
-        });
+  const handleValidateAndSubmit = (): void => {
+    if (inFlightRef.current || submitting || submitted) {
+      return;
+    }
 
-        focusFirstBad(allErrors);
+    const allErrors = validateAll(data);
 
-        return;
-      }
+    if (Object.keys(allErrors).length > 0) {
+      setErrors(allErrors);
 
-      inFlightRef.current = true;
-      setSubmitting(true);
-      setSubmitError(null);
+      setTouched({
+        firstName: true,
+        lastName: true,
+        email: true,
+        phone: true,
+        certificationSought: true,
+      });
 
-      const qualified = computeQualified(
-        data.certificationSought
-      );
+      focusFirstBad(allErrors);
 
-      try {
-        const res = await submit({
-          firstName: data.firstName.trim(),
-          lastName: data.lastName.trim(),
-          email: data.email.trim(),
+      return;
+    }
 
-          // PHONE REMAINS OPTIONAL.
-          phone: data.phone
-            ? data.phone.replace(/\D/g, "")
-            : "",
+    inFlightRef.current = true;
 
-          certificationSought:
-            data.certificationSought,
-
-          qualified,
-
-          disqualification_reason: qualified
-            ? undefined
-            : UNRECOGNIZED_REASON,
-
-          route_slug:
-            routeSlug ||
-            (typeof window !== "undefined"
-              ? window.location.pathname
-              : "/"),
-        });
-
-        // A 2xx with a body that is not {ok:true} is still a dropped lead.
-        // Only a confirmed success fires conversions and shows the thank-you card.
-        if (res?.ok !== true) {
-          throw new Error("Submission not confirmed by server.");
-        }
-
-        fireTracking(
-          qualified,
-          data.certificationSought
-        );
-
-        setSubmitted(true);
-      } catch (err) {
-        console.error(
-          "Lead submission failed:",
-          err
-        );
-
-        // The visitor is fine, but the LEAD would be dropped: surface a
-        // retryable error and fire NO tracking so we never bill a phantom
-        // conversion.
-        setSubmitError(SUBMIT_ERROR_MESSAGE);
-      } finally {
-        setSubmitting(false);
-        inFlightRef.current = false;
-      }
-    };
-
-  const onSubmitClick = (): void => {
-    handleValidateAndSubmit().catch(() => {
-      // handleValidateAndSubmit handles its own errors via submitError state.
+    performSubmit().catch(() => {
+      // performSubmit reports its own failures via submitError state.
     });
   };
 
-  const preventNativeSubmit = (
+  // Stops implicit (Enter) submission before a native submit is dispatched.
+  const handleKeyDown = (
+    event: React.KeyboardEvent<HTMLFormElement>
+  ): void => {
+    if (event.key !== "Enter" || event.nativeEvent.isComposing) {
+      return;
+    }
+
+    const target = event.target as HTMLElement;
+
+    if (NATIVE_ENTER_TAGS.includes(target.tagName)) {
+      return;
+    }
+
+    event.preventDefault();
+    handleValidateAndSubmit();
+  };
+
+  // Backstop only, for a native submit that bypassed the keydown boundary.
+  const handleSubmitBackstop = (
     event: React.FormEvent
   ): void => {
     event.preventDefault();
+    handleValidateAndSubmit();
   };
 
   if (submitted) {
@@ -490,7 +489,8 @@ export function FormCard({
 
   return (
     <form
-      onSubmit={preventNativeSubmit}
+      onKeyDown={handleKeyDown}
+      onSubmit={handleSubmitBackstop}
       noValidate
       aria-label="Request a free ISO or CMMI consultation"
       className="overflow-hidden rounded-[10px] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-card-lg"
@@ -646,7 +646,12 @@ export function FormCard({
             }}
             id={`${idPrefix}-email`}
             type="email"
-            pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
+            inputMode="email"
+            pattern={EMAIL_PATTERN}
+            maxLength={EMAIL_MAX_LENGTH}
+            spellCheck={false}
+            autoCapitalize="none"
+            title={EMAIL_ERROR}
             autoComplete="email"
             placeholder="Work email"
             value={data.email}
@@ -702,16 +707,16 @@ export function FormCard({
             name="phone"
             aria-required="false"
             inputMode="numeric"
-            pattern="\(\d{3}\) \d{3}-\d{4}"
+            pattern={PHONE_PATTERN}
             ref={(element) => {
               fieldRefs.current.phone =
                 element;
             }}
             id={`${idPrefix}-phone`}
             type="tel"
-            autoComplete="tel"
+            autoComplete="tel-national"
             placeholder="Phone (10 digits)"
-            title="Please enter a valid 10-digit phone number"
+            title={PHONE_ERROR}
             value={data.phone}
             onChange={(event) =>
               update(
@@ -848,7 +853,7 @@ export function FormCard({
         {/* Submit */}
         <button
           type="button"
-          onClick={onSubmitClick}
+          onClick={handleValidateAndSubmit}
           disabled={
             submitting || submitted
           }
