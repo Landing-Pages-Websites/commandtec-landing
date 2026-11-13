@@ -2,14 +2,7 @@
 
 import { useEffect, useCallback, useRef } from "react";
 import { FORM } from "@/lib/content";
-import {
-  EMAIL_ERROR,
-  PHONE_ERROR,
-  isValidEmail,
-  isValidPhone,
-  normalizeEmail,
-  phoneDigits,
-} from "@/lib/fields";
+import { parseLead } from "@/lib/leadValidation";
 
 const CONFIG = {
   CUSTOMER_ID: FORM.customerId,
@@ -137,20 +130,6 @@ const initAttribution = (): Attribution => {
   return attr;
 };
 
-// Phone is optional: a blank or whitespace-only phone is sent as "", and any
-// other value is validated before it is reduced to its 10 digits.
-const normalizeOptionalPhone = (formData: Record<string, unknown>): void => {
-  const phone = String(formData.phone ?? "");
-  if (!phone.trim()) {
-    if ("phone" in formData) formData.phone = "";
-    return;
-  }
-  if (!isValidPhone(phone)) {
-    throw new Error(PHONE_ERROR);
-  }
-  formData.phone = phoneDigits(phone);
-};
-
 interface UseMegaLeadFormReturn {
   submit: (formData: Record<string, unknown>) => Promise<SubmissionResponse>;
   isReady: boolean;
@@ -168,15 +147,8 @@ export const useMegaLeadForm = (): UseMegaLeadFormReturn => {
 
   const submit = useCallback(
     async (formData: Record<string, unknown>): Promise<SubmissionResponse> => {
-      // Defense-in-depth validation with the same lib/fields rules as the UI.
-      normalizeOptionalPhone(formData);
-      if (!formData.firstName || !formData.email) {
-        throw new Error("firstName and email are required");
-      }
-      if (!isValidEmail(formData.email)) {
-        throw new Error(EMAIL_ERROR);
-      }
-      formData.email = normalizeEmail(String(formData.email));
+      // §4c: the same validator as the form's gate, before anything is sent.
+      const lead = parseLead(formData);
 
       const attribution = initAttribution();
 
@@ -184,7 +156,7 @@ export const useMegaLeadForm = (): UseMegaLeadFormReturn => {
         customer_id: CONFIG.CUSTOMER_ID,
         site_id: CONFIG.SITE_ID,
         source_provider: CONFIG.SOURCE_PROVIDER,
-        form_data: formData,
+        form_data: { ...formData, ...lead },
         url: window.location.href,
         referrer_url: document.referrer || null,
         session_id: getSessionId(),

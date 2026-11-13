@@ -15,11 +15,16 @@ import {
   PHONE_ERROR,
   PHONE_PATTERN,
   formatPhone,
-  isValidEmail,
-  isValidPhone,
-  normalizeEmail,
-  phoneDigits,
 } from "@/lib/fields";
+import {
+  FIELD_ORDER,
+  isDeclaredCertification,
+  validateField,
+  validateLead,
+  type FieldErrors,
+  type FieldKey,
+  type LeadFields,
+} from "@/lib/leadValidation";
 
 declare global {
   interface Window {
@@ -35,10 +40,9 @@ declare global {
 
 // ─── Validation ──────────────────────────────────────────────
 
-// Email and phone rules live only in lib/fields (canonical lp-starter file).
-const TEXT_MAX_LENGTH = 200;
-const TEXT_TOO_LONG_ERROR = `Use ${TEXT_MAX_LENGTH} characters or fewer.`;
-
+// Every field rule lives in lib/leadValidation, shared with useMegaLeadForm.
+// Optional phone: blank passes; nonblank must pass lib/fields isValidPhone
+// (exactly 10 NANP digits) before submit.
 const UNRECOGNIZED_REASON = "Qualification criteria not met";
 
 // Enter keeps its native meaning on these elements (activation, picker, newline).
@@ -51,52 +55,13 @@ const NATIVE_ENTER_TAGS: readonly string[] = [
 
 const SUBMIT_ERROR_MESSAGE = `Something went wrong sending your request. Please try again, or call us at ${PHONE}.`;
 
-type FieldKey =
-  | "firstName"
-  | "lastName"
-  | "email"
-  | "phone"
-  | "certificationSought";
-
-interface FormState {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  certificationSought: string;
-}
-
-const INITIAL: FormState = {
+const INITIAL: LeadFields = {
   firstName: "",
   lastName: "",
   email: "",
   phone: "",
   certificationSought: "",
 };
-
-type FieldErrors = Partial<Record<FieldKey, string>>;
-
-// DOM order: validation runs on every field and focus goes to the first bad one.
-const FIELD_ORDER: FieldKey[] = [
-  "firstName",
-  "lastName",
-  "email",
-  "phone",
-  "certificationSought",
-];
-
-function validateText(
-  value: string,
-  requiredMessage: string
-): string | undefined {
-  const trimmed = value.trim();
-
-  if (!trimmed) return requiredMessage;
-
-  return trimmed.length > TEXT_MAX_LENGTH
-    ? TEXT_TOO_LONG_ERROR
-    : undefined;
-}
 
 // formatPhone reduces punctuation-only text such as "()" or "tel:" to "";
 // keep that nonblank input so validation rejects it visibly instead of it
@@ -107,51 +72,10 @@ function displayPhone(raw: string): string {
   return raw;
 }
 
-function validateField(
-  key: FieldKey,
-  value: string
-): string | undefined {
-  switch (key) {
-    case "firstName":
-      return validateText(value, "First name is required.");
-
-    case "lastName":
-      return validateText(value, "Last name is required.");
-
-    case "email":
-      if (!value.trim()) return "Email address is required.";
-      return isValidEmail(value) ? undefined : EMAIL_ERROR;
-
-    case "phone":
-      // PHONE IS OPTIONAL: only a blank value skips validation.
-      if (!value.trim()) return undefined;
-      return isValidPhone(value) ? undefined : PHONE_ERROR;
-
-    case "certificationSought":
-      return CERTIFICATION_OPTIONS.includes(value)
-        ? undefined
-        : "Please select a certification.";
-  }
-}
-
-function validateAll(data: FormState): FieldErrors {
-  const errors: FieldErrors = {};
-
-  FIELD_ORDER.forEach((key) => {
-    const err = validateField(key, data[key]);
-
-    if (err) {
-      errors[key] = err;
-    }
-  });
-
-  return errors;
-}
-
 // Reporting-only qualification — NEVER blocks or alters submit.
 // Every offered certification qualifies; anything else is unrecognized.
 function computeQualified(cert: string): boolean {
-  return CERTIFICATION_OPTIONS.includes(cert);
+  return isDeclaredCertification(cert);
 }
 
 interface FormCardProps {
@@ -175,7 +99,7 @@ export function FormCard({
 }: FormCardProps): React.ReactElement {
   const { submit } = useMegaLeadForm();
 
-  const [data, setData] = useState<FormState>(INITIAL);
+  const [data, setData] = useState<LeadFields>(INITIAL);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<
     Partial<Record<FieldKey, boolean>>
@@ -191,7 +115,7 @@ export function FormCard({
   >({});
 
   const update = (
-    key: keyof FormState,
+    key: FieldKey,
     value: string
   ): void => {
     setData((current) => ({
@@ -200,17 +124,11 @@ export function FormCard({
     }));
 
     setErrors((previous) => {
-      if (!(key in previous)) {
+      if (!previous[key]) {
         return previous;
       }
 
-      const fieldKey = key as FieldKey;
-
-      if (!previous[fieldKey]) {
-        return previous;
-      }
-
-      const error = validateField(fieldKey, value);
+      const error = validateField(key, value);
 
       if (error) {
         return previous;
@@ -220,7 +138,7 @@ export function FormCard({
         ...previous,
       };
 
-      delete next[fieldKey];
+      delete next[key];
 
       return next;
     });
@@ -327,17 +245,8 @@ export function FormCard({
   const buildLead = (
     qualified: boolean
   ): Record<string, unknown> => ({
-    firstName: data.firstName.trim(),
-    lastName: data.lastName.trim(),
-    email: normalizeEmail(data.email),
-
-    // PHONE REMAINS OPTIONAL: blank stays "", otherwise the 10 digits.
-    phone: data.phone.trim()
-      ? phoneDigits(data.phone)
-      : "",
-
-    certificationSought:
-      data.certificationSought,
+    // As typed: the hook's shared validator normalizes the declared fields.
+    ...data,
 
     qualified,
 
@@ -391,7 +300,7 @@ export function FormCard({
       return;
     }
 
-    const allErrors = validateAll(data);
+    const allErrors = validateLead(data);
 
     if (Object.keys(allErrors).length > 0) {
       setErrors(allErrors);
