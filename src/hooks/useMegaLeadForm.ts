@@ -137,6 +137,20 @@ const initAttribution = (): Attribution => {
   return attr;
 };
 
+// Phone is optional: a blank or whitespace-only phone is sent as "", and any
+// other value is validated before it is reduced to its 10 digits.
+const normalizeOptionalPhone = (formData: Record<string, unknown>): void => {
+  const phone = String(formData.phone ?? "");
+  if (!phone.trim()) {
+    if ("phone" in formData) formData.phone = "";
+    return;
+  }
+  if (!isValidPhone(phone)) {
+    throw new Error(PHONE_ERROR);
+  }
+  formData.phone = phoneDigits(phone);
+};
+
 interface UseMegaLeadFormReturn {
   submit: (formData: Record<string, unknown>) => Promise<SubmissionResponse>;
   isReady: boolean;
@@ -155,14 +169,7 @@ export const useMegaLeadForm = (): UseMegaLeadFormReturn => {
   const submit = useCallback(
     async (formData: Record<string, unknown>): Promise<SubmissionResponse> => {
       // Defense-in-depth validation with the same lib/fields rules as the UI.
-      // Phone is optional: only a blank phone skips the check, and a nonblank
-      // value is validated before it is reduced to its 10 digits.
-      if (formData.phone) {
-        if (!isValidPhone(String(formData.phone))) {
-          throw new Error(PHONE_ERROR);
-        }
-        formData.phone = phoneDigits(String(formData.phone));
-      }
+      normalizeOptionalPhone(formData);
       if (!formData.firstName || !formData.email) {
         throw new Error("firstName and email are required");
       }

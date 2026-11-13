@@ -98,6 +98,15 @@ function validateText(
     : undefined;
 }
 
+// formatPhone reduces punctuation-only text such as "()" or "tel:" to "";
+// keep that nonblank input so validation rejects it visibly instead of it
+// becoming an accepted blank phone. Whitespace-only stays genuinely blank.
+function displayPhone(raw: string): string {
+  const formatted = formatPhone(raw);
+  if (formatted || !raw.trim()) return formatted;
+  return raw;
+}
+
 function validateField(
   key: FieldKey,
   value: string
@@ -721,7 +730,7 @@ export function FormCard({
             onChange={(event) =>
               update(
                 "phone",
-                formatPhone(event.target.value)
+                displayPhone(event.target.value)
               )
             }
             onBlur={(event) =>
