@@ -19,6 +19,7 @@ import {
 import {
   FIELD_ORDER,
   isDeclaredCertification,
+  parseLead,
   validateField,
   validateLead,
   type FieldErrors,
@@ -52,6 +53,9 @@ const NATIVE_ENTER_TAGS: readonly string[] = [
   "BUTTON",
   "A",
 ];
+
+// Logical MegaTag identity per form instance (hero / contact); no DOM id needed.
+const FORM_ELEMENT_ID_PREFIX = "form-";
 
 // The #contact instance sits beside a taller copy + photo column on desktop;
 // it alone gets roomier vertical rhythm so its fields fill that row.
@@ -208,8 +212,13 @@ export function FormCard({
       certification_sought: cert,
     };
 
+    // The SDK forwards only elementId + formData; formData carries the five
+    // lead fields exactly as the hook's parseLead POSTed them, plus the summary.
     runTracker(() =>
-      window.MegaTag?.trackEvent?.("form_submit", payload)
+      window.MegaTag?.trackEvent?.("form_submit", {
+        elementId: `${FORM_ELEMENT_ID_PREFIX}${idPrefix}`,
+        formData: { ...parseLead(data), ...payload },
+      })
     );
 
     window.dataLayer = window.dataLayer || [];
