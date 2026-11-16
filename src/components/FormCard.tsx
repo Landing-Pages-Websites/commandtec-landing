@@ -59,7 +59,10 @@ const CONTACT_ID_PREFIX = "contact";
 const BODY_CLS = "space-y-2 p-5 md:space-y-3.5 md:p-7";
 const CONTACT_BODY_CLS = `${BODY_CLS} lg:space-y-8 lg:py-14`;
 
-const SUBMIT_ERROR_MESSAGE = `Something went wrong sending your request. Please try again, or call us at ${PHONE}.`;
+// The phone + period render in a nowrap span so the fallback number never splits.
+const SUBMIT_ERROR_LEAD = "Something went wrong sending your request. Please try again, or call us at ";
+const SUBMIT_ERROR_PHONE = `${PHONE}.`;
+const SUBMIT_ERROR_MESSAGE = `${SUBMIT_ERROR_LEAD}${SUBMIT_ERROR_PHONE}`;
 
 const INITIAL: LeadFields = {
   firstName: "",
@@ -808,7 +811,8 @@ export function FormCard({
             aria-live="polite"
             className="lp-field-error"
           >
-            {submitError}
+            {SUBMIT_ERROR_LEAD}
+            <span className="whitespace-nowrap">{SUBMIT_ERROR_PHONE}</span>
           </p>
         ) : null}
 
